@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Car Loan Payoff Calculator: See How Extra Payments Save Interest | Sumharbor</title>
+<meta name="description" content="Free car loan payoff calculator. Enter your balance, APR and monthly payment to see how much time and interest extra monthly payments can save.">
+<meta name="color-scheme" content="light dark">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site"><div class="wrap"><a class="brand" href="/"><svg width="34" height="34" viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="9" fill="#0f6e78"/><path d="M18 7v17H9z" fill="#ffffff"/><path d="M20 11v13h8z" fill="#ffffff" opacity=".8"/><path d="M7 27h22l-3 4H10z" fill="#ffffff"/></svg> Sumharbor</a></div></header>
+<main class="wrap">
+<h1>Car Loan Payoff Calculator</h1>
+<p class="lead">See when your car loan will be paid off, and how much time and interest you could save by adding a little extra each month.</p>
+
+<form class="tool" data-calc="carloan" autocomplete="off">
+  <div class="field"><label for="balance">Remaining loan balance ($)</label>
+  <input id="balance" name="balance" type="number" inputmode="decimal" step="any" min="0" value="20000"></div>
+  <div class="row">
+    <div class="field"><label for="apr">Interest rate, APR (%)</label>
+    <input id="apr" name="apr" type="number" inputmode="decimal" step="any" min="0" value="7"></div>
+    <div class="field"><label for="payment">Monthly payment ($)</label>
+    <input id="payment" name="payment" type="number" inputmode="decimal" step="any" min="0" value="450"></div>
+  </div>
+  <div class="field"><label for="extra">Extra payment each month ($)</label>
+  <input id="extra" name="extra" type="number" inputmode="decimal" step="any" min="0" value="100"></div>
+  <button class="go" type="submit">Calculate payoff</button>
+  <div id="result" aria-live="polite" hidden></div>
+</form>
+
+<h2>How the payoff is calculated</h2>
+<p>Each month, interest is added to your balance: balance × APR ÷ 12. Your payment goes to that interest first, and the rest lowers the balance. An extra payment goes straight to the balance, so next month's interest is a little smaller, and the effect builds up over time.</p>
+<p><strong>Example:</strong> a $20,000 balance at 7% APR with a $450 monthly payment is paid off in about 4 years 4 months, with roughly $3,219 in total interest. Adding $100 a month finishes it in about 3 years 5 months and saves roughly $674 in interest.</p>
+
+<h2>Frequently asked questions</h2>
+<details><summary>Will my lender apply extra money to the principal?</summary>
+<p>Not always. Some lenders hold extra money for the next payment instead. Check your lender's online portal or call them, and ask that extra payments be applied to principal.</p></details>
+<details><summary>Is there a penalty for paying a car loan early?</summary>
+<p>Some loans have prepayment penalties, but many do not. Look for a prepayment clause in your loan contract or ask your lender before paying extra.</p></details>
+<details><summary>Why does it say my payment is too low?</summary>
+<p>If the monthly payment is not larger than the monthly interest, the balance never goes down. Check the balance, APR and payment you entered.</p></details>
+<details><summary>Does this include fees, taxes or insurance?</summary>
+<p>No. It only models principal and interest on a fixed-rate loan. Your lender's payoff quote is the exact amount to close the loan.</p></details>
+</main>
+<div class="wrap"><footer><p>Results are estimates for information only, not financial, tax or academic advice. Confirm important numbers with your school, lender or a qualified professional.</p><p class="flinks"><a href="/">All calculators</a><a href="privacy-policy">Privacy Policy</a><a href="about">About</a><a href="contact">Contact</a></p></footer></div>
+<script src="app.js"></script>
+</body>
+</html>

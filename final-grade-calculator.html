@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Final Grade Calculator: What Do I Need on My Final? | Sumharbor</title>
+<meta name="description" content="Find the score you need on your final exam to reach the grade you want. Enter your current grade, the final exam weight and your target.">
+<meta name="color-scheme" content="light dark">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site"><div class="wrap"><a class="brand" href="/"><svg width="34" height="34" viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="9" fill="#0f6e78"/><path d="M18 7v17H9z" fill="#ffffff"/><path d="M20 11v13h8z" fill="#ffffff" opacity=".8"/><path d="M7 27h22l-3 4H10z" fill="#ffffff"/></svg> Sumharbor</a></div></header>
+<main class="wrap">
+<h1>Final Grade Calculator</h1>
+<p class="lead">Enter your current grade, how much the final exam counts, and the grade you want. We'll tell you the score you need on the final.</p>
+
+<form class="tool" data-calc="finalgrade" autocomplete="off">
+  <div class="field"><label for="current">Current grade (%)</label>
+  <input id="current" name="current" type="number" inputmode="decimal" step="any" min="0" value="82"></div>
+  <div class="row">
+    <div class="field"><label for="weight">Final exam weight (%)</label>
+    <input id="weight" name="weight" type="number" inputmode="decimal" step="any" min="0" max="100" value="25"></div>
+    <div class="field"><label for="target">Grade you want (%)</label>
+    <input id="target" name="target" type="number" inputmode="decimal" step="any" min="0" value="85"></div>
+  </div>
+  <button class="go" type="submit">Find the score I need</button>
+  <div id="result" aria-live="polite" hidden></div>
+</form>
+
+<h2>How the final grade formula works</h2>
+<p>Your current grade covers everything except the final, so it counts for the rest of the course. The final exam covers its weight. To land on your target, the two parts have to add up.</p>
+<p class="formula">Needed on final = (Target − Current × (1 − Weight)) ÷ Weight</p>
+<p>Use the weight as a decimal: 25% is 0.25.</p>
+<p><strong>Example:</strong> your current grade is 82% and the final is worth 25%. You want 85% overall. Your current work counts for 75% of the course: 82 × 0.75 = 61.5. You need 85 − 61.5 = 23.5 more points from the final, which is worth 25%, so 23.5 ÷ 0.25 = 94%.</p>
+
+<h2>Frequently asked questions</h2>
+<details><summary>What if the answer is over 100%?</summary>
+<p>Then the grade you want is out of reach with the final alone, unless your instructor offers extra credit. Try a lower target to see what is possible.</p></details>
+<details><summary>What should I enter as my current grade?</summary>
+<p>Your grade on everything before the final, as your class portal shows it. Make sure it does not already include a placeholder zero for the final.</p></details>
+<details><summary>Does this work if the final replaces a lower grade?</summary>
+<p>Not directly. Policies like dropping your lowest score change the math. Check your syllabus or ask your instructor.</p></details>
+<details><summary>Can I use letter-grade targets?</summary>
+<p>Enter the percentage your instructor uses for that letter. The table under the result shows what you would need for 90%, 80%, 70% and 60%.</p></details>
+</main>
+<div class="wrap"><footer><p>Results are estimates for information only, not financial, tax or academic advice. Confirm important numbers with your school, lender or a qualified professional.</p><p class="flinks"><a href="/">All calculators</a><a href="privacy-policy">Privacy Policy</a><a href="about">About</a><a href="contact">Contact</a></p></footer></div>
+<script src="app.js"></script>
+</body>
+</html>

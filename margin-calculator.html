@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Margin and Markup Calculator: Find Profit, Margin and Price | Sumharbor</title>
+<meta name="description" content="Free margin and markup calculator. Enter cost and price to get profit, gross margin and markup, or enter a target margin or markup to find your selling price.">
+<meta name="color-scheme" content="light dark">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site"><div class="wrap"><a class="brand" href="/"><svg width="34" height="34" viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="9" fill="#0f6e78"/><path d="M18 7v17H9z" fill="#ffffff"/><path d="M20 11v13h8z" fill="#ffffff" opacity=".8"/><path d="M7 27h22l-3 4H10z" fill="#ffffff"/></svg> Sumharbor</a></div></header>
+<main class="wrap">
+<h1>Margin and Markup Calculator</h1>
+<p class="lead">Turn your cost and selling price into profit, gross margin and markup. Or enter the margin or markup you want and get the price to charge.</p>
+
+<form class="tool" data-calc="margin" autocomplete="off">
+  <div class="field"><label for="mode">What do you know?</label>
+  <select id="mode" name="mode" data-target="vlabel" data-labels='{"price":"Selling price ($)","margin":"Target margin (%)","markup":"Target markup (%)"}'>
+    <option value="price">Cost and selling price</option>
+    <option value="margin">Cost and the margin I want</option>
+    <option value="markup">Cost and the markup I want</option>
+  </select></div>
+  <div class="row">
+    <div class="field"><label for="cost">Cost ($)</label>
+    <input id="cost" name="cost" type="number" inputmode="decimal" step="any" min="0" value="60"></div>
+    <div class="field"><label for="value" id="vlabel">Selling price ($)</label>
+    <input id="value" name="value" type="number" inputmode="decimal" step="any" min="0" value="100"></div>
+  </div>
+  <button class="go" type="submit">Calculate</button>
+  <div id="result" aria-live="polite" hidden></div>
+</form>
+
+<h2>Margin vs. markup</h2>
+<p>Both measure profit, but against different bases. Margin compares profit to the selling price. Markup compares profit to the cost.</p>
+<p class="formula">Margin = (Price − Cost) ÷ Price<br>Markup = (Price − Cost) ÷ Cost</p>
+<p><strong>Example:</strong> an item costs $60 and sells for $100. Profit is $40. Margin is 40 ÷ 100 = 40%, and markup is 40 ÷ 60 = 66.67%.</p>
+<p>A 50% markup is not a 50% margin. Add 50% to a $100 cost and you charge $150, which is only a 33.33% margin.</p>
+
+<h2>Frequently asked questions</h2>
+<details><summary>Which one should I use to set prices?</summary>
+<p>Many retailers think in markup (cost plus a percentage), while financial statements usually report margin. Use whichever you track, but do not mix them up, because the same percentage means different prices.</p></details>
+<details><summary>Is this gross margin or net margin?</summary>
+<p>Gross margin. It only uses the cost you enter. Rent, shipping, fees, taxes and wages are not included unless you add them to the cost.</p></details>
+<details><summary>Can margin be 100%?</summary>
+<p>Not in this calculator. A 100% margin would mean a cost of zero. Enter a margin below 100%.</p></details>
+</main>
+<div class="wrap"><footer><p>Results are estimates for information only, not financial, tax or academic advice. Confirm important numbers with your school, lender or a qualified professional.</p><p class="flinks"><a href="/">All calculators</a><a href="privacy-policy">Privacy Policy</a><a href="about">About</a><a href="contact">Contact</a></p></footer></div>
+<script src="app.js"></script>
+</body>
+</html>

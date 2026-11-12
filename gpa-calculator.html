@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GPA Calculator: Calculate Your College GPA | Sumharbor</title>
+<meta name="description" content="Free GPA calculator. Enter your grades and credit hours to get your term GPA and see how it changes your cumulative GPA on a 4.0 scale.">
+<meta name="color-scheme" content="light dark">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site"><div class="wrap"><a class="brand" href="/"><svg width="34" height="34" viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="9" fill="#0f6e78"/><path d="M18 7v17H9z" fill="#ffffff"/><path d="M20 11v13h8z" fill="#ffffff" opacity=".8"/><path d="M7 27h22l-3 4H10z" fill="#ffffff"/></svg> Sumharbor</a></div></header>
+<main class="wrap">
+<h1>GPA Calculator</h1>
+<p class="lead">Enter each course's grade and credit hours to get your GPA on the standard 4.0 scale. Add your current GPA to see your new cumulative GPA.</p>
+
+<form class="tool" data-calc="gpa" autocomplete="off">
+  <div id="courses"></div>
+  <button class="ghost" id="add-course" type="button">+ Add a course</button>
+  <div class="row">
+    <div class="field"><label for="cgpa">Current cumulative GPA (optional)</label>
+    <input id="cgpa" name="cgpa" type="number" inputmode="decimal" step="any" min="0" max="4.3" placeholder="e.g. 3.20"></div>
+    <div class="field"><label for="ccredits">Credits completed so far (optional)</label>
+    <input id="ccredits" name="ccredits" type="number" inputmode="decimal" step="any" min="0" placeholder="e.g. 30"></div>
+  </div>
+  <button class="go" type="submit">Calculate GPA</button>
+  <div id="result" aria-live="polite" hidden></div>
+</form>
+
+<h2>How GPA is calculated</h2>
+<p>Each letter grade is worth a number of grade points. Multiply the points by the course's credit hours to get quality points. Add up the quality points and divide by the total credit hours.</p>
+<p class="formula">GPA = total quality points ÷ total credit hours</p>
+<p><strong>Example:</strong> an A (4.0) in a 3-credit class gives 12 quality points, an A- (3.7) in a 3-credit class gives 11.1, a B+ (3.3) in a 4-credit class gives 13.2, and a B (3.0) in a 3-credit class gives 9. That is 45.3 quality points over 13 credits, so the GPA is 3.48.</p>
+
+<h2>Grade points used here</h2>
+<ul class="scale">
+<li>A+ and A = 4.0</li><li>A- = 3.7</li><li>B+ = 3.3</li><li>B = 3.0</li><li>B- = 2.7</li><li>C+ = 2.3</li><li>C = 2.0</li><li>C- = 1.7</li><li>D+ = 1.3</li><li>D = 1.0</li><li>D- = 0.7</li><li>F = 0.0</li>
+</ul>
+<p>Schools differ. Some give an A+ more than 4.0, and some do not use plus and minus grades at all. This calculator also does not add extra points for honors or AP classes. Check your school's own scale for official numbers.</p>
+
+<h2>Frequently asked questions</h2>
+<details><summary>How do I calculate my cumulative GPA?</summary>
+<p>Enter your current GPA and the credits you have completed in the optional boxes. The calculator combines them with this term's grades, weighting each by credit hours.</p></details>
+<details><summary>Why does one bad grade move my GPA less late in college?</summary>
+<p>GPA is weighted by credits. The more credits you have already earned, the less a single term changes the overall average.</p></details>
+<details><summary>Do pass/fail and withdrawn courses count?</summary>
+<p>Usually not, because they carry no grade points. Leave the grade blank and the course is skipped. Ask your registrar if you are unsure how your school treats them.</p></details>
+<details><summary>Is this my official GPA?</summary>
+<p>No. It is an estimate based on the scale above. Your school's transcript is the official record.</p></details>
+</main>
+<div class="wrap"><footer><p>Results are estimates for information only, not financial, tax or academic advice. Confirm important numbers with your school, lender or a qualified professional.</p><p class="flinks"><a href="/">All calculators</a><a href="privacy-policy">Privacy Policy</a><a href="about">About</a><a href="contact">Contact</a></p></footer></div>
+<script src="app.js"></script>
+</body>
+</html>
