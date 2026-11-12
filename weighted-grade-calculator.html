@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Weighted Grade Calculator: Find Your Overall Grade | Sumharbor</title>
+<meta name="description" content="Free weighted grade calculator. Enter your scores and how much each counts to get your overall class grade, even before all the work is done.">
+<meta name="color-scheme" content="light dark">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site"><div class="wrap"><a class="brand" href="/"><svg width="34" height="34" viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="9" fill="#0f6e78"/><path d="M18 7v17H9z" fill="#ffffff"/><path d="M20 11v13h8z" fill="#ffffff" opacity=".8"/><path d="M7 27h22l-3 4H10z" fill="#ffffff"/></svg> Sumharbor</a></div></header>
+<main class="wrap">
+<h1>Weighted Grade Calculator</h1>
+<p class="lead">Enter each score and how much it counts toward your final grade. We'll combine them into your overall grade so far.</p>
+
+<form class="tool" data-calc="weighted" autocomplete="off">
+  <div id="courses" data-kind="weighted"></div>
+  <button class="ghost" id="add-course" type="button">+ Add a row</button>
+  <button class="go" type="submit">Calculate my grade</button>
+  <div id="result" aria-live="polite" hidden></div>
+</form>
+
+<h2>How a weighted grade works</h2>
+<p>In many classes, homework, quizzes and exams do not count equally. Each category has a weight, and the weights add up to 100%. Multiply each score by its weight, add the results, and divide by the total weight.</p>
+<p class="formula">Weighted grade = (score₁ × weight₁ + score₂ × weight₂ + …) ÷ total weight</p>
+<p><strong>Example:</strong> homework 92% (weight 20%), quizzes 85% (weight 20%) and a midterm 78% (weight 25%). The points are 92 × 20 + 85 × 20 + 78 × 25 = 5,490. The weights so far total 65%, so the grade is 5,490 ÷ 65 = 84.46%. The remaining 35% of the course is still to come.</p>
+
+<h2>Frequently asked questions</h2>
+<details><summary>What if my weights do not add up to 100%?</summary>
+<p>That is fine while the course is in progress. The calculator shows your grade on the work counted so far and how much weight is still remaining. It will warn you if the weights add up to more than 100%.</p></details>
+<details><summary>How do I find my weights?</summary>
+<p>Check your syllabus. It usually lists each category, such as homework 20%, quizzes 20%, midterm 25% and final 35%.</p></details>
+<details><summary>What if a category has many assignments?</summary>
+<p>Average the scores for that category first, then enter the average with the category's weight. If every assignment is worth the same, add up the points earned and divide by the points possible.</p></details>
+<details><summary>How do I see what I need on the final?</summary>
+<p>Use our <a href="final-grade-calculator">final grade calculator</a>. It uses your grade so far and the final's weight to find the score you need.</p></details>
+
+<h2>Related calculators</h2>
+<p><a href="gpa-calculator">GPA Calculator</a> · <a href="final-grade-calculator">Final Grade Calculator</a></p>
+</main>
+<div class="wrap"><footer><p>Results are estimates for information only, not financial, tax or academic advice. Confirm important numbers with your school, lender or a qualified professional.</p><p class="flinks"><a href="/">All calculators</a><a href="privacy-policy">Privacy Policy</a><a href="about">About</a><a href="contact">Contact</a></p></footer></div>
+<script src="app.js"></script>
+</body>
+</html>

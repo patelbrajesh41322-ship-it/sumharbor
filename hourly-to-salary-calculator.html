@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hourly to Salary Calculator (and Salary to Hourly) | Sumharbor</title>
+<meta name="description" content="Free hourly to salary calculator. Turn an hourly wage into weekly, monthly and yearly pay, or convert an annual salary into an hourly rate.">
+<meta name="color-scheme" content="light dark">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site"><div class="wrap"><a class="brand" href="/"><svg width="34" height="34" viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="9" fill="#0f6e78"/><path d="M18 7v17H9z" fill="#ffffff"/><path d="M20 11v13h8z" fill="#ffffff" opacity=".8"/><path d="M7 27h22l-3 4H10z" fill="#ffffff"/></svg> Sumharbor</a></div></header>
+<main class="wrap">
+<h1>Hourly to Salary Calculator</h1>
+<p class="lead">Turn an hourly wage into weekly, monthly and yearly pay. Or switch to start from an annual salary and see the hourly rate.</p>
+
+<form class="tool" data-calc="salary" autocomplete="off">
+  <div class="field"><label for="mode">What do you know?</label>
+  <select id="mode" name="mode" data-target="vlabel" data-labels='{"hourly":"Hourly pay ($)","salary":"Annual salary ($)"}'>
+    <option value="hourly">My hourly pay</option>
+    <option value="salary">My annual salary</option>
+  </select></div>
+  <div class="field"><label for="value" id="vlabel">Hourly pay ($)</label>
+  <input id="value" name="value" type="number" inputmode="decimal" step="any" min="0" value="25"></div>
+  <div class="row">
+    <div class="field"><label for="hours">Hours per week</label>
+    <input id="hours" name="hours" type="number" inputmode="decimal" step="any" min="0" value="40"></div>
+    <div class="field"><label for="weeks">Weeks worked per year</label>
+    <input id="weeks" name="weeks" type="number" inputmode="decimal" step="any" min="0" max="52" value="52"></div>
+  </div>
+  <button class="go" type="submit">Calculate pay</button>
+  <div id="result" aria-live="polite" hidden></div>
+</form>
+
+<h2>How the conversion works</h2>
+<p>Annual pay is your hourly rate times the hours you work each week times the weeks you work each year. Going the other way, divide an annual salary by the total hours worked in a year.</p>
+<p class="formula">Annual pay = hourly rate × hours per week × weeks per year<br>Hourly rate = annual salary ÷ (hours per week × weeks per year)</p>
+<p><strong>Example:</strong> $25 an hour at 40 hours a week for 52 weeks is $1,000 a week and $52,000 a year, or about $4,333 a month. An annual salary of $60,000 works out to about $28.85 an hour on the same schedule (2,080 hours).</p>
+
+<h2>Frequently asked questions</h2>
+<details><summary>Is this before or after taxes?</summary>
+<p>Before. These are gross amounts. Your take-home pay will be lower after taxes, retirement contributions and other deductions.</p></details>
+<details><summary>What if I take unpaid time off?</summary>
+<p>Lower the weeks worked per year. For example, use 50 weeks if you have two unpaid weeks off.</p></details>
+<details><summary>Why is "every 2 weeks" different from "twice a month"?</summary>
+<p>Paying every 2 weeks means 26 paychecks a year. Twice a month means 24. The calculator shows both so you can match how you are paid.</p></details>
+<details><summary>Does this include overtime or bonuses?</summary>
+<p>No. It assumes the same hours every week at one rate.</p></details>
+
+<h2>Related calculators</h2>
+<p><a href="car-loan-payment-calculator">Car Loan Payment Calculator</a> · <a href="break-even-calculator">Break-Even Calculator</a></p>
+</main>
+<div class="wrap"><footer><p>Results are estimates before taxes and deductions, for information only. They are not financial, tax or legal advice.</p><p class="flinks"><a href="/">All calculators</a><a href="privacy-policy">Privacy Policy</a><a href="about">About</a><a href="contact">Contact</a></p></footer></div>
+<script src="app.js"></script>
+</body>
+</html>

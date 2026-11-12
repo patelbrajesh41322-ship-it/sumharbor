@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Car Loan Payment Calculator: Estimate Your Monthly Payment | Sumharbor</title>
+<meta name="description" content="Free car loan payment calculator. Enter the vehicle price, down payment, trade-in, APR and term to estimate your monthly payment and total interest.">
+<meta name="color-scheme" content="light dark">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site"><div class="wrap"><a class="brand" href="/"><svg width="34" height="34" viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="9" fill="#0f6e78"/><path d="M18 7v17H9z" fill="#ffffff"/><path d="M20 11v13h8z" fill="#ffffff" opacity=".8"/><path d="M7 27h22l-3 4H10z" fill="#ffffff"/></svg> Sumharbor</a></div></header>
+<main class="wrap">
+<h1>Car Loan Payment Calculator</h1>
+<p class="lead">Estimate your monthly car payment from the price, what you put down, the interest rate and the length of the loan.</p>
+
+<form class="tool" data-calc="carpayment" autocomplete="off">
+  <div class="field"><label for="price">Vehicle price ($)</label>
+  <input id="price" name="price" type="number" inputmode="decimal" step="any" min="0" value="30000"></div>
+  <div class="row">
+    <div class="field"><label for="down">Down payment ($)</label>
+    <input id="down" name="down" type="number" inputmode="decimal" step="any" min="0" value="3000"></div>
+    <div class="field"><label for="trade">Trade-in value ($)</label>
+    <input id="trade" name="trade" type="number" inputmode="decimal" step="any" min="0" value="0"></div>
+  </div>
+  <div class="row">
+    <div class="field"><label for="apr">Interest rate, APR (%)</label>
+    <input id="apr" name="apr" type="number" inputmode="decimal" step="any" min="0" value="7"></div>
+    <div class="field"><label for="term">Loan term</label>
+    <select id="term" name="term">
+      <option value="24">24 months</option><option value="36">36 months</option><option value="48">48 months</option>
+      <option value="60" selected>60 months</option><option value="72">72 months</option><option value="84">84 months</option>
+    </select></div>
+  </div>
+  <button class="go" type="submit">Calculate payment</button>
+  <div id="result" aria-live="polite" hidden></div>
+</form>
+
+<h2>How the payment is calculated</h2>
+<p>The amount you borrow is the price minus your down payment and trade-in. The monthly payment spreads that amount, plus interest, evenly over the term.</p>
+<p class="formula">Payment = L × r × (1 + r)<sup>n</sup> ÷ ((1 + r)<sup>n</sup> − 1)</p>
+<p>L is the amount financed, r is the monthly rate (APR ÷ 12 ÷ 100) and n is the number of months.</p>
+<p><strong>Example:</strong> a $30,000 car with $3,000 down finances $27,000. At 7% APR over 60 months, the payment is about $534.63. Over the whole loan you pay about $5,078 in interest, for a total of about $32,078.</p>
+
+<h2>Frequently asked questions</h2>
+<details><summary>Does this include sales tax and fees?</summary>
+<p>No. Sales tax, registration, title and dealer fees vary by state and dealer. If you plan to finance them, add them to the vehicle price before you calculate.</p></details>
+<details><summary>What happens if I choose a longer term?</summary>
+<p>The monthly payment goes down, but you pay more interest in total, and you may owe more than the car is worth for longer. Try a few terms to compare.</p></details>
+<details><summary>What is a good APR for a car loan?</summary>
+<p>Rates depend on your credit, the lender, the loan term and whether the car is new or used. Compare offers from several lenders, including your bank or credit union.</p></details>
+<details><summary>Can I pay the loan off early?</summary>
+<p>Often yes. See how much time and interest extra payments could save with our <a href="car-loan-payoff-calculator">car loan payoff calculator</a>.</p></details>
+
+<h2>Related calculators</h2>
+<p><a href="car-loan-payoff-calculator">Car Loan Payoff Calculator</a> · <a href="hourly-to-salary-calculator">Hourly to Salary Calculator</a></p>
+</main>
+<div class="wrap"><footer><p>Results are estimates for information only, not financial, tax or academic advice. Confirm important numbers with your school, lender or a qualified professional.</p><p class="flinks"><a href="/">All calculators</a><a href="privacy-policy">Privacy Policy</a><a href="about">About</a><a href="contact">Contact</a></p></footer></div>
+<script src="app.js"></script>
+</body>
+</html>

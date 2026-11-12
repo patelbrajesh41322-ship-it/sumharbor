@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Break-Even Calculator: Units and Revenue to Break Even | Sumharbor</title>
+<meta name="description" content="Free break-even calculator. Enter fixed costs, price per unit and variable cost per unit to find how many units you must sell to break even or reach a profit goal.">
+<meta name="color-scheme" content="light dark">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site"><div class="wrap"><a class="brand" href="/"><svg width="34" height="34" viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="9" fill="#0f6e78"/><path d="M18 7v17H9z" fill="#ffffff"/><path d="M20 11v13h8z" fill="#ffffff" opacity=".8"/><path d="M7 27h22l-3 4H10z" fill="#ffffff"/></svg> Sumharbor</a></div></header>
+<main class="wrap">
+<h1>Break-Even Calculator</h1>
+<p class="lead">Find how many units you need to sell to cover your costs, and how many to reach a profit goal.</p>
+
+<form class="tool" data-calc="breakeven" autocomplete="off">
+  <div class="field"><label for="fixed">Fixed costs ($)</label>
+  <input id="fixed" name="fixed" type="number" inputmode="decimal" step="any" min="0" value="5000"></div>
+  <div class="row">
+    <div class="field"><label for="price">Selling price per unit ($)</label>
+    <input id="price" name="price" type="number" inputmode="decimal" step="any" min="0" value="25"></div>
+    <div class="field"><label for="variable">Variable cost per unit ($)</label>
+    <input id="variable" name="variable" type="number" inputmode="decimal" step="any" min="0" value="10"></div>
+  </div>
+  <div class="field"><label for="goal">Profit goal ($, optional)</label>
+  <input id="goal" name="goal" type="number" inputmode="decimal" step="any" min="0" value="3000"></div>
+  <button class="go" type="submit">Find break-even</button>
+  <div id="result" aria-live="polite" hidden></div>
+</form>
+
+<h2>How break-even works</h2>
+<p>Fixed costs stay the same no matter how much you sell, like rent, software and salaries. Variable costs grow with each unit, like materials and shipping. Each sale contributes its price minus its variable cost toward covering the fixed costs.</p>
+<p class="formula">Break-even units = fixed costs ÷ (price − variable cost per unit)</p>
+<p><strong>Example:</strong> fixed costs are $5,000, you sell at $25, and each unit costs $10 to make and ship. Each unit contributes $15. You need $5,000 ÷ $15 = 333.3, so 334 units, which is $8,350 in sales, to break even. To earn $3,000 on top, you need ($5,000 + $3,000) ÷ $15 = 533.3, so 534 units.</p>
+
+<h2>Frequently asked questions</h2>
+<details><summary>Why are the units rounded up?</summary>
+<p>You cannot sell part of a unit, and selling fewer than the exact number leaves you slightly short. Rounding up makes sure you at least break even.</p></details>
+<details><summary>What counts as a fixed cost?</summary>
+<p>Costs that do not change with sales in the short run, such as rent, insurance, software subscriptions and salaried wages.</p></details>
+<details><summary>What if my price is lower than my variable cost?</summary>
+<p>Then every sale loses money and you can never break even. Raise the price or lower the variable cost. Our <a href="margin-calculator">margin calculator</a> can help you test prices.</p></details>
+
+<h2>Related calculators</h2>
+<p><a href="margin-calculator">Margin and Markup Calculator</a> · <a href="hourly-to-salary-calculator">Hourly to Salary Calculator</a></p>
+</main>
+<div class="wrap"><footer><p>Results are estimates for information only, not financial, tax or academic advice. Confirm important numbers with your school, lender or a qualified professional.</p><p class="flinks"><a href="/">All calculators</a><a href="privacy-policy">Privacy Policy</a><a href="about">About</a><a href="contact">Contact</a></p></footer></div>
+<script src="app.js"></script>
+</body>
+</html>

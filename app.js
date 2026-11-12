@@ -26,6 +26,13 @@
     return { months: months, interest: interest };
   }
 
+  function emiOf(P, r, n) {
+    var i = r / 1200;
+    if (i === 0) return P / n;
+    var g = Math.pow(1 + i, n);
+    return P * i * g / (g - 1);
+  }
+
   var calcs = {
     gpa: function (f) {
       var rows = f.querySelectorAll('.course'), pts = 0, cr = 0, used = 0, i;
@@ -88,12 +95,12 @@
       var fast = X > 0 ? payoff(B, r, P + X) : base;
       var rows = [
         ['Remaining balance', usd.format(B)],
-        ['Without extra: time left', dur(base.months)],
-        ['Without extra: total interest', usd.format(base.interest)]
+        ['Time left (no extra)', dur(base.months)],
+        ['Interest (no extra)', usd.format(base.interest)]
       ];
       if (X > 0) {
-        rows.push(['With extra: time left', dur(fast.months)]);
-        rows.push(['With extra: total interest', usd.format(fast.interest)]);
+        rows.push(['Time left (with extra)', dur(fast.months)]);
+        rows.push(['Interest (with extra)', usd.format(fast.interest)]);
         rows.push(['Interest saved', usd.format(base.interest - fast.interest)]);
         rows.push(['Time saved', dur(base.months - fast.months)]);
       }
@@ -121,6 +128,95 @@
           ['Profit', usd.format(profit)],
           ['Gross margin', (profit / price * 100).toFixed(2) + '%'],
           ['Markup', (profit / cost * 100).toFixed(2) + '%']
+        ]
+      };
+    }
+    ,
+    weighted: function (f) {
+      var rows = f.querySelectorAll('.course'), pts = 0, wt = 0, used = 0, i;
+      for (i = 0; i < rows.length; i++) {
+        var sc = parseFloat(rows[i].querySelector('.sc').value);
+        var w = parseFloat(rows[i].querySelector('.wt').value);
+        if (isNaN(sc) || !(w > 0)) { continue; }
+        if (!(sc >= 0 && sc <= 200)) { return { error: 'Enter each score as a percentage, like 85.' }; }
+        pts += sc * w; wt += w; used++;
+      }
+      if (wt === 0) { return { error: 'Add at least one score with a weight.' }; }
+      if (wt > 100.0001) { return { error: 'Your weights add up to ' + fmt(wt) + '%. They should add up to 100% or less.' }; }
+      return {
+        head: ['Your weighted grade', (pts / wt).toFixed(2) + '%'],
+        rows: [
+          ['Items counted', String(used)],
+          ['Weight counted', fmt(wt) + '%'],
+          ['Weight remaining', fmt(100 - wt) + '%'],
+          ['Points earned', fmt(pts / 100) + ' of ' + fmt(wt)]
+        ]
+      };
+    },
+
+    carpayment: function (f) {
+      var price = val(f, 'price'), down = val(f, 'down'), trade = val(f, 'trade');
+      var apr = val(f, 'apr'), n = Math.round(val(f, 'term'));
+      if (isNaN(down)) { down = 0; }
+      if (isNaN(trade)) { trade = 0; }
+      if (!(price > 0)) return { error: 'Enter the vehicle price.' };
+      if (down < 0 || trade < 0) return { error: 'Down payment and trade-in cannot be negative.' };
+      var loan = price - down - trade;
+      if (!(loan > 0)) return { error: 'Your down payment and trade-in cover the full price, so there is nothing to finance.' };
+      if (!(apr >= 0 && apr <= 100)) return { error: 'Enter the APR as a percentage between 0 and 100.' };
+      if (!(n >= 1 && n <= 120)) return { error: 'Loan term must be between 1 and 120 months.' };
+      var pay = emiOf(loan, apr, n), total = pay * n;
+      return {
+        head: ['Estimated monthly payment', usd.format(pay)],
+        rows: [
+          ['Amount financed', usd.format(loan)],
+          ['Loan term', n + ' months'],
+          ['Total interest', usd.format(total - loan)],
+          ['Total of all payments', usd.format(total)]
+        ]
+      };
+    },
+
+    breakeven: function (f) {
+      var fixed = val(f, 'fixed'), price = val(f, 'price'), vc = val(f, 'variable'), goal = val(f, 'goal');
+      if (isNaN(goal)) { goal = 0; }
+      if (!(fixed >= 0)) return { error: 'Enter your fixed costs (use 0 if none).' };
+      if (!(price > 0)) return { error: 'Enter the selling price per unit.' };
+      if (!(vc >= 0)) return { error: 'Enter the variable cost per unit (use 0 if none).' };
+      if (!(goal >= 0)) return { error: 'Target profit cannot be negative.' };
+      var cm = price - vc;
+      if (!(cm > 0)) return { error: 'Your price must be higher than your variable cost per unit.' };
+      var units = Math.ceil(fixed / cm - 1e-9), rows = [
+        ['Profit per unit', usd.format(cm)],
+        ['Contribution margin', (cm / price * 100).toFixed(1) + '%'],
+        ['Break-even revenue', usd.format(units * price)]
+      ];
+      if (goal > 0) {
+        var gu = Math.ceil((fixed + goal) / cm - 1e-9);
+        rows.push(['Units for your profit goal', gu.toLocaleString('en-US')]);
+        rows.push(['Revenue for your profit goal', usd.format(gu * price)]);
+      }
+      return { head: ['Break-even point', units.toLocaleString('en-US') + (units === 1 ? ' unit' : ' units')], rows: rows };
+    },
+
+    salary: function (f) {
+      var mode = f.elements.mode.value, v = val(f, 'value'), hrs = val(f, 'hours'), wks = val(f, 'weeks');
+      if (!(v > 0)) return { error: mode === 'hourly' ? 'Enter your hourly pay.' : 'Enter your annual salary.' };
+      if (!(hrs > 0 && hrs <= 168)) return { error: 'Hours per week must be between 1 and 168.' };
+      if (!(wks > 0 && wks <= 52)) return { error: 'Weeks per year must be between 1 and 52.' };
+      var hourly, annual;
+      if (mode === 'hourly') { hourly = v; annual = v * hrs * wks; }
+      else { annual = v; hourly = v / (hrs * wks); }
+      var weekly = hourly * hrs;
+      return {
+        head: [mode === 'hourly' ? 'Annual pay (before taxes)' : 'Hourly pay (before taxes)', mode === 'hourly' ? usd.format(annual) : usd.format(hourly)],
+        rows: [
+          ['Hourly', usd.format(hourly)],
+          ['Weekly', usd.format(weekly)],
+          ['Every 2 weeks', usd.format(weekly * 2)],
+          ['Twice a month', usd.format(annual / 24)],
+          ['Monthly', usd.format(annual / 12)],
+          ['Annual', usd.format(annual)]
         ]
       };
     }
@@ -179,27 +275,43 @@
 
   function run() { render(calcs[form.getAttribute('data-calc')](form)); }
 
-  /* GPA course rows */
+  /* Rows for the GPA and weighted grade calculators */
   var list = document.getElementById('courses');
   if (list) {
+    var kind = list.getAttribute('data-kind') || 'gpa';
     var grades = ['', 'A+', 'A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'D+', 'D', 'D-', 'F'];
-    var seed = [['', 'A', '3'], ['', 'A-', '3'], ['', 'B+', '4'], ['', 'B', '3'], ['', '', '3']];
+    var seed = kind === 'gpa'
+      ? [['', 'A', '3'], ['', 'A-', '3'], ['', 'B+', '4'], ['', 'B', '3'], ['', '', '3']]
+      : [['Homework', '92', '20'], ['Quizzes', '85', '20'], ['Midterm exam', '78', '25'], ['', '', '']];
     var makeRow = function (s) {
       var row = el('div', 'course');
-      var name = el('input', 'cname'); name.type = 'text'; name.placeholder = 'Course name (optional)'; name.value = s[0];
-      name.setAttribute('aria-label', 'Course name');
-      var sel = el('select', 'g'); sel.setAttribute('aria-label', 'Grade');
-      grades.forEach(function (g) { var o = el('option', '', g === '' ? 'Grade' : g); o.value = g; if (g === s[1]) { o.selected = true; } sel.appendChild(o); });
-      var cr = el('input', 'cr'); cr.type = 'number'; cr.min = '0'; cr.step = 'any'; cr.inputMode = 'decimal'; cr.value = s[2];
-      cr.setAttribute('aria-label', 'Credits');
-      var x = el('button', 'x', '×'); x.type = 'button'; x.setAttribute('aria-label', 'Remove course');
+      var name = el('input', 'cname'); name.type = 'text';
+      name.placeholder = kind === 'gpa' ? 'Course name (optional)' : 'Assignment or category (optional)';
+      name.value = s[0]; name.setAttribute('aria-label', 'Name'); name.autocomplete = 'off';
+      var b, c;
+      if (kind === 'gpa') {
+        b = el('select', 'g'); b.setAttribute('aria-label', 'Grade');
+        grades.forEach(function (g) { var o = el('option', '', g === '' ? 'Grade' : g); o.value = g; b.appendChild(o); });
+        b.value = s[1];
+        c = el('input', 'cr'); c.placeholder = 'Credits'; c.setAttribute('aria-label', 'Credits');
+      } else {
+        b = el('input', 'sc'); b.type = 'number'; b.min = '0'; b.step = 'any'; b.inputMode = 'decimal';
+        b.placeholder = 'Score (%)'; b.setAttribute('aria-label', 'Score percent'); b.value = s[1];
+        c = el('input', 'wt'); c.placeholder = 'Weight (%)'; c.setAttribute('aria-label', 'Weight percent');
+      }
+      c.type = 'number'; c.min = '0'; c.step = 'any'; c.inputMode = 'decimal'; c.value = s[2]; c.autocomplete = 'off';
+      var x = el('button', 'x', '×'); x.type = 'button'; x.setAttribute('aria-label', 'Remove row');
       x.addEventListener('click', function () { if (list.children.length > 1) { list.removeChild(row); } });
-      row.appendChild(name); row.appendChild(sel); row.appendChild(cr); row.appendChild(x);
+      row.appendChild(name); row.appendChild(b); row.appendChild(c); row.appendChild(x);
       return row;
     };
     seed.forEach(function (s) { list.appendChild(makeRow(s)); });
     var add = document.getElementById('add-course');
-    if (add) { add.addEventListener('click', function () { if (list.children.length < 20) { list.appendChild(makeRow(['', '', '3'])); } }); }
+    if (add) {
+      add.addEventListener('click', function () {
+        if (list.children.length < 25) { list.appendChild(makeRow(kind === 'gpa' ? ['', '', '3'] : ['', '', ''])); }
+      });
+    }
   }
 
   /* Dynamic label for the margin calculator */
