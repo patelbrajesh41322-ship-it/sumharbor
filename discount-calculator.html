@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Discount Calculator: Sale Price and How Much You Save | Ratiofield</title>
+<meta name="description" content="Free discount calculator. Enter the original price and percent off to see the sale price, how much you save, and the total with sales tax.">
+<link rel="canonical" href="https://ratiofield.com/discount-calculator">
+<meta name="color-scheme" content="light dark">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Ratiofield">
+<meta property="og:title" content="Discount Calculator: Sale Price and How Much You Save | Ratiofield">
+<meta property="og:description" content="Free discount calculator. Enter the original price and percent off to see the sale price, how much you save, and the total with sales tax.">
+<meta property="og:url" content="https://ratiofield.com/discount-calculator">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Discount Calculator", "url": "https://ratiofield.com/discount-calculator", "description": "Free discount calculator. Enter the original price and percent off to see the sale price, how much you save, and the total with sales tax.", "applicationCategory": "FinanceApplication", "operatingSystem": "Any", "browserRequirements": "Requires JavaScript", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}</script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site"><div class="wrap"><a class="brand" href="/"><svg width="34" height="34" viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="9" fill="#0f6e78"/><text x="18" y="26" text-anchor="middle" font-size="24" font-weight="700" fill="#ffffff" font-family="system-ui,sans-serif">÷</text></svg> Ratiofield</a></div></header>
+<main class="wrap">
+<h1>Discount Calculator</h1>
+<p class="lead">Find the sale price and how much you save. Add your local sales tax to see the total you will pay at the register.</p>
+
+<form class="tool" data-calc="discount" autocomplete="off">
+  <div class="field"><label for="price">Original price ($)</label>
+  <input id="price" name="price" type="number" inputmode="decimal" step="any" min="0" value="80"></div>
+  <div class="row">
+    <div class="field"><label for="off">Discount (% off)</label>
+    <input id="off" name="off" type="number" inputmode="decimal" step="any" min="0" max="100" value="25"></div>
+    <div class="field"><label for="tax">Sales tax (%, optional)</label>
+    <input id="tax" name="tax" type="number" inputmode="decimal" step="any" min="0" value="8"></div>
+  </div>
+  <button class="go" type="submit">Calculate sale price</button>
+  <div id="result" aria-live="polite" hidden></div>
+</form>
+
+<h2>How to calculate a discount</h2>
+<p class="formula">Sale price = original price × (1 − discount ÷ 100)</p>
+<p><strong>Example:</strong> an $80 item at 25% off costs 80 × 0.75 = $60. You save $20. With 8% sales tax on the sale price, the tax is $4.80 and the total is $64.80.</p>
+<p>Sales tax rates differ by state, county and city, and some items are exempt. Enter the rate that applies where you shop, or leave it at 0 to see the price before tax.</p>
+
+<h2>Frequently asked questions</h2>
+<details><summary>Is 20% off then 10% off the same as 30% off?</summary>
+<p>No. The second discount applies to the already reduced price. 20% off then 10% off is 0.80 × 0.90 = 0.72, which is 28% off in total.</p></details>
+<details><summary>How do I find the original price from the sale price?</summary>
+<p>Divide the sale price by (1 − discount ÷ 100). A $60 sale price after 25% off means the original was 60 ÷ 0.75 = $80.</p></details>
+<details><summary>Is sales tax charged before or after the discount?</summary>
+<p>In most cases tax is charged on the discounted price, but store coupons and manufacturer coupons can be treated differently. The register total is the final word.</p></details>
+</main>
+<nav class="wrap more" aria-label="More calculators"><h2>More calculators</h2><ul><li><a href="gpa-calculator">GPA</a></li><li><a href="weighted-gpa-calculator">Weighted GPA</a></li><li><a href="final-grade-calculator">Final Grade</a></li><li><a href="weighted-grade-calculator">Weighted Grade</a></li><li><a href="grade-percentage-calculator">Grade Percentage</a></li><li><a href="tip-calculator">Tip</a></li><li><a href="car-loan-payment-calculator">Car Loan Payment</a></li><li><a href="car-loan-payoff-calculator">Car Loan Payoff</a></li><li><a href="hourly-to-salary-calculator">Hourly to Salary</a></li><li><a href="margin-calculator">Margin and Markup</a></li><li><a href="break-even-calculator">Break-Even</a></li></ul></nav>
+<div class="wrap"><footer><p>Results are estimates for information only, not financial, tax or academic advice. Confirm important numbers with your school, lender or a qualified professional.</p><p class="flinks"><a href="/">All calculators</a><a href="privacy-policy">Privacy Policy</a><a href="about">About</a><a href="contact">Contact</a></p></footer></div>
+<script src="app.js"></script>
+</body>
+</html>

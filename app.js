@@ -220,6 +220,86 @@
         ]
       };
     }
+    ,
+    wgpa: function (f) {
+      var rows = f.querySelectorAll('.course'), up = 0, wp = 0, cr = 0, used = 0, i;
+      var BONUS = { regular: 0, honors: 0.5, ap: 1.0 };
+      for (i = 0; i < rows.length; i++) {
+        var g = rows[i].querySelector('.g').value;
+        var c = parseFloat(rows[i].querySelector('.cr').value);
+        var lv = rows[i].querySelector('.lv').value;
+        if (g === '' || !(c > 0)) { continue; }
+        var base = SCALE[g];
+        up += base * c;
+        wp += (base + (base > 0 ? BONUS[lv] : 0)) * c;
+        cr += c; used++;
+      }
+      if (cr === 0) { return { error: 'Add at least one course with a grade and credits.' }; }
+      return {
+        head: ['Weighted GPA', (wp / cr).toFixed(2)],
+        rows: [
+          ['Unweighted GPA', (up / cr).toFixed(2)],
+          ['Courses counted', String(used)],
+          ['Credits', fmt(cr)]
+        ]
+      };
+    },
+
+    gradepercent: function (f) {
+      var e = val(f, 'earned'), p = val(f, 'possible');
+      if (!(e >= 0)) return { error: 'Enter the points you earned.' };
+      if (!(p > 0)) return { error: 'Enter the total points possible.' };
+      var pct = e / p * 100, letter;
+      if (pct >= 97) letter = 'A+'; else if (pct >= 93) letter = 'A'; else if (pct >= 90) letter = 'A-';
+      else if (pct >= 87) letter = 'B+'; else if (pct >= 83) letter = 'B'; else if (pct >= 80) letter = 'B-';
+      else if (pct >= 77) letter = 'C+'; else if (pct >= 73) letter = 'C'; else if (pct >= 70) letter = 'C-';
+      else if (pct >= 67) letter = 'D+'; else if (pct >= 63) letter = 'D'; else if (pct >= 60) letter = 'D-';
+      else letter = 'F';
+      return {
+        head: ['Your grade', pct.toFixed(2) + '% (' + letter + ')'],
+        rows: [
+          ['Points earned', fmt(e)],
+          ['Points possible', fmt(p)],
+          ['Points missed', fmt(Math.max(p - e, 0))]
+        ]
+      };
+    },
+
+    discount: function (f) {
+      var P = val(f, 'price'), d = val(f, 'off'), t = val(f, 'tax');
+      if (isNaN(t)) { t = 0; }
+      if (!(P > 0)) return { error: 'Enter the original price.' };
+      if (!(d >= 0 && d <= 100)) return { error: 'Enter a discount between 0% and 100%.' };
+      if (!(t >= 0 && t <= 100)) return { error: 'Enter a sales tax rate between 0% and 100%, or leave it at 0.' };
+      var sale = P * (1 - d / 100), tax = sale * t / 100;
+      return {
+        head: ['Sale price', usd.format(sale)],
+        rows: [
+          ['Original price', usd.format(P)],
+          ['You save', usd.format(P - sale)],
+          ['Sales tax (' + t + '%)', usd.format(tax)],
+          ['Total to pay', usd.format(sale + tax)]
+        ]
+      };
+    },
+
+    tip: function (f) {
+      var bill = val(f, 'bill'), pct = val(f, 'tip'), n = Math.round(val(f, 'people'));
+      if (!(bill > 0)) return { error: 'Enter the bill amount.' };
+      if (!(pct >= 0 && pct <= 100)) return { error: 'Enter a tip between 0% and 100%.' };
+      if (!(n >= 1 && n <= 100)) return { error: 'Enter how many people are splitting the bill (1 to 100).' };
+      var tip = bill * pct / 100, total = bill + tip;
+      return {
+        head: [n > 1 ? 'Each person pays' : 'Total to pay', usd.format(total / n)],
+        rows: [
+          ['Bill', usd.format(bill)],
+          ['Tip (' + pct + '%)', usd.format(tip)],
+          ['Total', usd.format(total)],
+          ['Tip per person', usd.format(tip / n)]
+        ]
+      };
+    }
+
   };
 
   if (typeof module !== 'undefined') { module.exports = calcs; }
@@ -275,41 +355,59 @@
 
   function run() { render(calcs[form.getAttribute('data-calc')](form)); }
 
-  /* Rows for the GPA and weighted grade calculators */
+  /* Rows for the GPA, weighted GPA and weighted grade calculators */
   var list = document.getElementById('courses');
   if (list) {
     var kind = list.getAttribute('data-kind') || 'gpa';
     var grades = ['', 'A+', 'A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'D+', 'D', 'D-', 'F'];
-    var seed = kind === 'gpa'
-      ? [['', 'A', '3'], ['', 'A-', '3'], ['', 'B+', '4'], ['', 'B', '3'], ['', '', '3']]
-      : [['Homework', '92', '20'], ['Quizzes', '85', '20'], ['Midterm exam', '78', '25'], ['', '', '']];
+    var seeds = {
+      gpa: [['', 'A', '3'], ['', 'A-', '3'], ['', 'B+', '4'], ['', 'B', '3'], ['', '', '3']],
+      wgpa: [['', 'A', '3', 'regular'], ['', 'A-', '3', 'honors'], ['', 'B+', '4', 'ap'], ['', 'B', '3', 'regular'], ['', '', '3', 'regular']],
+      weighted: [['Homework', '92', '20'], ['Quizzes', '85', '20'], ['Midterm exam', '78', '25'], ['', '', '']]
+    };
+    var gradeSelect = function (value) {
+      var sel = el('select', 'g'); sel.setAttribute('aria-label', 'Grade');
+      grades.forEach(function (g) { var o = el('option', '', g === '' ? 'Grade' : g); o.value = g; sel.appendChild(o); });
+      sel.value = value; return sel;
+    };
+    var levelSelect = function (value) {
+      var sel = el('select', 'lv'); sel.setAttribute('aria-label', 'Course level');
+      [['regular', 'Regular'], ['honors', 'Honors'], ['ap', 'AP / IB']].forEach(function (p) {
+        var o = el('option', '', p[1]); o.value = p[0]; sel.appendChild(o);
+      });
+      sel.value = value; return sel;
+    };
+    var numInput = function (cls, placeholder, label, value) {
+      var c = el('input', cls); c.type = 'number'; c.min = '0'; c.step = 'any'; c.inputMode = 'decimal';
+      c.placeholder = placeholder; c.setAttribute('aria-label', label); c.value = value; c.autocomplete = 'off';
+      return c;
+    };
     var makeRow = function (s) {
-      var row = el('div', 'course');
+      var row = el('div', kind === 'wgpa' ? 'course w4' : 'course');
       var name = el('input', 'cname'); name.type = 'text';
-      name.placeholder = kind === 'gpa' ? 'Course name (optional)' : 'Assignment or category (optional)';
+      name.placeholder = kind === 'weighted' ? 'Assignment or category (optional)' : 'Course name (optional)';
       name.value = s[0]; name.setAttribute('aria-label', 'Name'); name.autocomplete = 'off';
-      var b, c;
-      if (kind === 'gpa') {
-        b = el('select', 'g'); b.setAttribute('aria-label', 'Grade');
-        grades.forEach(function (g) { var o = el('option', '', g === '' ? 'Grade' : g); o.value = g; b.appendChild(o); });
-        b.value = s[1];
-        c = el('input', 'cr'); c.placeholder = 'Credits'; c.setAttribute('aria-label', 'Credits');
+      row.appendChild(name);
+      if (kind === 'weighted') {
+        row.appendChild(numInput('sc', 'Score (%)', 'Score percent', s[1]));
+        row.appendChild(numInput('wt', 'Weight (%)', 'Weight percent', s[2]));
       } else {
-        b = el('input', 'sc'); b.type = 'number'; b.min = '0'; b.step = 'any'; b.inputMode = 'decimal';
-        b.placeholder = 'Score (%)'; b.setAttribute('aria-label', 'Score percent'); b.value = s[1];
-        c = el('input', 'wt'); c.placeholder = 'Weight (%)'; c.setAttribute('aria-label', 'Weight percent');
+        row.appendChild(gradeSelect(s[1]));
+        row.appendChild(numInput('cr', 'Credits', 'Credits', s[2]));
+        if (kind === 'wgpa') { row.appendChild(levelSelect(s[3])); }
       }
-      c.type = 'number'; c.min = '0'; c.step = 'any'; c.inputMode = 'decimal'; c.value = s[2]; c.autocomplete = 'off';
       var x = el('button', 'x', '×'); x.type = 'button'; x.setAttribute('aria-label', 'Remove row');
       x.addEventListener('click', function () { if (list.children.length > 1) { list.removeChild(row); } });
-      row.appendChild(name); row.appendChild(b); row.appendChild(c); row.appendChild(x);
+      row.appendChild(x);
       return row;
     };
-    seed.forEach(function (s) { list.appendChild(makeRow(s)); });
+    seeds[kind].forEach(function (s) { list.appendChild(makeRow(s)); });
     var add = document.getElementById('add-course');
     if (add) {
       add.addEventListener('click', function () {
-        if (list.children.length < 25) { list.appendChild(makeRow(kind === 'gpa' ? ['', '', '3'] : ['', '', ''])); }
+        if (list.children.length < 25) {
+          list.appendChild(makeRow(kind === 'weighted' ? ['', '', ''] : kind === 'wgpa' ? ['', '', '3', 'regular'] : ['', '', '3']));
+        }
       });
     }
   }

@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Weighted GPA Calculator: Honors and AP Courses | Ratiofield</title>
+<meta name="description" content="Free weighted GPA calculator. Enter grades, credits and course level (regular, honors, AP or IB) to see your weighted and unweighted GPA.">
+<link rel="canonical" href="https://ratiofield.com/weighted-gpa-calculator">
+<meta name="color-scheme" content="light dark">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Ratiofield">
+<meta property="og:title" content="Weighted GPA Calculator: Honors and AP Courses | Ratiofield">
+<meta property="og:description" content="Free weighted GPA calculator. Enter grades, credits and course level (regular, honors, AP or IB) to see your weighted and unweighted GPA.">
+<meta property="og:url" content="https://ratiofield.com/weighted-gpa-calculator">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Weighted GPA Calculator", "url": "https://ratiofield.com/weighted-gpa-calculator", "description": "Free weighted GPA calculator. Enter grades, credits and course level (regular, honors, AP or IB) to see your weighted and unweighted GPA.", "applicationCategory": "EducationalApplication", "operatingSystem": "Any", "browserRequirements": "Requires JavaScript", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}</script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site"><div class="wrap"><a class="brand" href="/"><svg width="34" height="34" viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="9" fill="#0f6e78"/><text x="18" y="26" text-anchor="middle" font-size="24" font-weight="700" fill="#ffffff" font-family="system-ui,sans-serif">÷</text></svg> Ratiofield</a></div></header>
+<main class="wrap">
+<h1>Weighted GPA Calculator</h1>
+<p class="lead">Add your courses, mark each as regular, honors or AP/IB, and see your weighted GPA next to your unweighted GPA.</p>
+
+<form class="tool" data-calc="wgpa" autocomplete="off">
+  <div id="courses" data-kind="wgpa"></div>
+  <button class="ghost" id="add-course" type="button">+ Add a course</button>
+  <button class="go" type="submit">Calculate weighted GPA</button>
+  <div id="result" aria-live="polite" hidden></div>
+</form>
+
+<h2>Weighted vs. unweighted GPA</h2>
+<p>An unweighted GPA treats every class the same on a 4.0 scale. A weighted GPA gives extra points for harder classes, so students in honors, AP or IB courses can earn a GPA above 4.0.</p>
+<p>This calculator adds 0.5 points for honors and 1.0 point for AP/IB to each passing grade. A grade of F gets no bonus.</p>
+<p class="formula">Weighted GPA = total weighted quality points ÷ total credits</p>
+<p><strong>Example:</strong> an A in a regular 3-credit class is 4.0. An A- in a 3-credit honors class is 3.7 + 0.5 = 4.2. A B+ in a 4-credit AP class is 3.3 + 1.0 = 4.3. A B in a regular 3-credit class is 3.0. The weighted points are 12 + 12.6 + 17.2 + 9 = 50.8 over 13 credits, so the weighted GPA is 3.91. The same classes give an unweighted GPA of 3.48.</p>
+
+<h2>Frequently asked questions</h2>
+<details><summary>Does every school weight GPA the same way?</summary>
+<p>No. Some schools add 0.5 for honors and 1.0 for AP, some add different amounts, and some do not weight at all. Check your school's handbook. This is an estimate.</p></details>
+<details><summary>Will colleges use my weighted GPA?</summary>
+<p>Many colleges recalculate GPA using their own method, often unweighted or based on core classes only. Ask the admissions office what they use.</p></details>
+<details><summary>What grade scale does this use?</summary>
+<p>A+ and A are 4.0, A- is 3.7, B+ is 3.3, B is 3.0, and so on down to F at 0.0, the same scale as our <a href="gpa-calculator">GPA calculator</a>.</p></details>
+</main>
+<nav class="wrap more" aria-label="More calculators"><h2>More calculators</h2><ul><li><a href="gpa-calculator">GPA</a></li><li><a href="final-grade-calculator">Final Grade</a></li><li><a href="weighted-grade-calculator">Weighted Grade</a></li><li><a href="grade-percentage-calculator">Grade Percentage</a></li><li><a href="discount-calculator">Discount</a></li><li><a href="tip-calculator">Tip</a></li><li><a href="car-loan-payment-calculator">Car Loan Payment</a></li><li><a href="car-loan-payoff-calculator">Car Loan Payoff</a></li><li><a href="hourly-to-salary-calculator">Hourly to Salary</a></li><li><a href="margin-calculator">Margin and Markup</a></li><li><a href="break-even-calculator">Break-Even</a></li></ul></nav>
+<div class="wrap"><footer><p>Results are estimates for information only, not financial, tax or academic advice. Confirm important numbers with your school, lender or a qualified professional.</p><p class="flinks"><a href="/">All calculators</a><a href="privacy-policy">Privacy Policy</a><a href="about">About</a><a href="contact">Contact</a></p></footer></div>
+<script src="app.js"></script>
+</body>
+</html>

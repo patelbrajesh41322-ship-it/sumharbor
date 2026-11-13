@@ -76,3 +76,8 @@ footer{margin:40px 0 24px;padding-top:16px;border-top:1px solid var(--line);colo
 footer p{margin:0 0 8px}
 footer .flinks a{margin-right:14px}
 .updated{color:var(--muted);font-size:14px}
+.course.w4{grid-template-columns:1.15fr .85fr 1.1fr auto}
+.more h2{font-size:18px;margin:34px 0 10px}
+.more ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.more a{display:inline-block;padding:6px 12px;border:1px solid var(--line);border-radius:999px;text-decoration:none;font-size:15px;background:var(--card)}
+.more a:hover{border-color:var(--accent)}

@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tip Calculator: Tip Amount, Total and Split per Person | Ratiofield</title>
+<meta name="description" content="Free tip calculator. Enter the bill, tip percentage and number of people to see the tip, the total and what each person pays.">
+<link rel="canonical" href="https://ratiofield.com/tip-calculator">
+<meta name="color-scheme" content="light dark">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Ratiofield">
+<meta property="og:title" content="Tip Calculator: Tip Amount, Total and Split per Person | Ratiofield">
+<meta property="og:description" content="Free tip calculator. Enter the bill, tip percentage and number of people to see the tip, the total and what each person pays.">
+<meta property="og:url" content="https://ratiofield.com/tip-calculator">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Tip Calculator", "url": "https://ratiofield.com/tip-calculator", "description": "Free tip calculator. Enter the bill, tip percentage and number of people to see the tip, the total and what each person pays.", "applicationCategory": "FinanceApplication", "operatingSystem": "Any", "browserRequirements": "Requires JavaScript", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}</script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site"><div class="wrap"><a class="brand" href="/"><svg width="34" height="34" viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="9" fill="#0f6e78"/><text x="18" y="26" text-anchor="middle" font-size="24" font-weight="700" fill="#ffffff" font-family="system-ui,sans-serif">÷</text></svg> Ratiofield</a></div></header>
+<main class="wrap">
+<h1>Tip Calculator</h1>
+<p class="lead">Enter the bill and the tip you want to leave. Split it between friends and see what each person pays.</p>
+
+<form class="tool" data-calc="tip" autocomplete="off">
+  <div class="field"><label for="bill">Bill amount ($)</label>
+  <input id="bill" name="bill" type="number" inputmode="decimal" step="any" min="0" value="80"></div>
+  <div class="row">
+    <div class="field"><label for="tip">Tip (%)</label>
+    <input id="tip" name="tip" type="number" inputmode="decimal" step="any" min="0" value="20"></div>
+    <div class="field"><label for="people">Number of people</label>
+    <input id="people" name="people" type="number" inputmode="numeric" step="1" min="1" value="4"></div>
+  </div>
+  <button class="go" type="submit">Calculate tip</button>
+  <div id="result" aria-live="polite" hidden></div>
+</form>
+
+<h2>How the tip is calculated</h2>
+<p class="formula">Tip = bill × tip % ÷ 100<br>Each person pays = (bill + tip) ÷ number of people</p>
+<p><strong>Example:</strong> an $80 bill with a 20% tip is $16 of tip and $96 in total. Split four ways, each person pays $24.</p>
+<p>Many people in the U.S. tip 15% to 20% at sit-down restaurants. Check whether your bill already includes a service charge or an automatic gratuity, which is common for large groups.</p>
+
+<h2>Frequently asked questions</h2>
+<details><summary>Should I tip on the bill before or after tax?</summary>
+<p>Both are common. Tipping on the pre-tax amount gives a slightly lower tip. Enter whichever amount you prefer as the bill.</p></details>
+<details><summary>How do I split a bill unevenly?</summary>
+<p>Calculate each person's share of the bill first, then enter that share with a group size of 1 to get what they owe including tip.</p></details>
+<details><summary>Do tipping customs differ in other countries?</summary>
+<p>Yes, often a lot. In some countries a service charge is already included and tips are small or not expected. Check local customs when you travel.</p></details>
+</main>
+<nav class="wrap more" aria-label="More calculators"><h2>More calculators</h2><ul><li><a href="gpa-calculator">GPA</a></li><li><a href="weighted-gpa-calculator">Weighted GPA</a></li><li><a href="final-grade-calculator">Final Grade</a></li><li><a href="weighted-grade-calculator">Weighted Grade</a></li><li><a href="grade-percentage-calculator">Grade Percentage</a></li><li><a href="discount-calculator">Discount</a></li><li><a href="car-loan-payment-calculator">Car Loan Payment</a></li><li><a href="car-loan-payoff-calculator">Car Loan Payoff</a></li><li><a href="hourly-to-salary-calculator">Hourly to Salary</a></li><li><a href="margin-calculator">Margin and Markup</a></li><li><a href="break-even-calculator">Break-Even</a></li></ul></nav>
+<div class="wrap"><footer><p>Results are estimates for information only, not financial, tax or academic advice. Confirm important numbers with your school, lender or a qualified professional.</p><p class="flinks"><a href="/">All calculators</a><a href="privacy-policy">Privacy Policy</a><a href="about">About</a><a href="contact">Contact</a></p></footer></div>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Grade Percentage Calculator: Points to Percent and Letter Grade | Ratiofield</title>
+<meta name="description" content="Free grade percentage calculator. Enter the points you earned and the points possible to get your percentage and letter grade.">
+<link rel="canonical" href="https://ratiofield.com/grade-percentage-calculator">
+<meta name="color-scheme" content="light dark">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Ratiofield">
+<meta property="og:title" content="Grade Percentage Calculator: Points to Percent and Letter Grade | Ratiofield">
+<meta property="og:description" content="Free grade percentage calculator. Enter the points you earned and the points possible to get your percentage and letter grade.">
+<meta property="og:url" content="https://ratiofield.com/grade-percentage-calculator">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Grade Percentage Calculator", "url": "https://ratiofield.com/grade-percentage-calculator", "description": "Free grade percentage calculator. Enter the points you earned and the points possible to get your percentage and letter grade.", "applicationCategory": "EducationalApplication", "operatingSystem": "Any", "browserRequirements": "Requires JavaScript", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}</script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site"><div class="wrap"><a class="brand" href="/"><svg width="34" height="34" viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="9" fill="#0f6e78"/><text x="18" y="26" text-anchor="middle" font-size="24" font-weight="700" fill="#ffffff" font-family="system-ui,sans-serif">÷</text></svg> Ratiofield</a></div></header>
+<main class="wrap">
+<h1>Grade Percentage Calculator</h1>
+<p class="lead">Enter the points you earned and the total points possible. We'll give you the percentage and the letter grade.</p>
+
+<form class="tool" data-calc="gradepercent" autocomplete="off">
+  <div class="row">
+    <div class="field"><label for="earned">Points earned</label>
+    <input id="earned" name="earned" type="number" inputmode="decimal" step="any" min="0" value="42"></div>
+    <div class="field"><label for="possible">Points possible</label>
+    <input id="possible" name="possible" type="number" inputmode="decimal" step="any" min="0" value="50"></div>
+  </div>
+  <button class="go" type="submit">Find my grade</button>
+  <div id="result" aria-live="polite" hidden></div>
+</form>
+
+<h2>How the percentage is calculated</h2>
+<p class="formula">Percentage = points earned ÷ points possible × 100</p>
+<p><strong>Example:</strong> 42 points out of 50 is 42 ÷ 50 = 0.84, which is 84%, a B on the scale below.</p>
+
+<h2>Letter grade scale used here</h2>
+<ul class="scale">
+<li>A+ = 97% and up</li><li>A = 93% to 96.99%</li><li>A- = 90% to 92.99%</li><li>B+ = 87% to 89.99%</li><li>B = 83% to 86.99%</li><li>B- = 80% to 82.99%</li><li>C+ = 77% to 79.99%</li><li>C = 73% to 76.99%</li><li>C- = 70% to 72.99%</li><li>D+ = 67% to 69.99%</li><li>D = 63% to 66.99%</li><li>D- = 60% to 62.99%</li><li>F = below 60%</li>
+</ul>
+<p>Schools and teachers set their own cutoffs. Check your syllabus for the scale your class uses.</p>
+
+<h2>Frequently asked questions</h2>
+<details><summary>Can my score be over 100%?</summary>
+<p>Yes, if there is extra credit. Enter the points you earned even if they are higher than the points possible.</p></details>
+<details><summary>What if my teacher curves the grade?</summary>
+<p>A curve changes the points or the cutoffs. Use the curved score as your points earned, or ask your teacher for the new scale.</p></details>
+<details><summary>How do I combine several scores?</summary>
+<p>Use our <a href="weighted-grade-calculator">weighted grade calculator</a> if categories count differently, or add up all points earned and all points possible if everything counts equally.</p></details>
+</main>
+<nav class="wrap more" aria-label="More calculators"><h2>More calculators</h2><ul><li><a href="gpa-calculator">GPA</a></li><li><a href="weighted-gpa-calculator">Weighted GPA</a></li><li><a href="final-grade-calculator">Final Grade</a></li><li><a href="weighted-grade-calculator">Weighted Grade</a></li><li><a href="discount-calculator">Discount</a></li><li><a href="tip-calculator">Tip</a></li><li><a href="car-loan-payment-calculator">Car Loan Payment</a></li><li><a href="car-loan-payoff-calculator">Car Loan Payoff</a></li><li><a href="hourly-to-salary-calculator">Hourly to Salary</a></li><li><a href="margin-calculator">Margin and Markup</a></li><li><a href="break-even-calculator">Break-Even</a></li></ul></nav>
+<div class="wrap"><footer><p>Results are estimates for information only, not financial, tax or academic advice. Confirm important numbers with your school, lender or a qualified professional.</p><p class="flinks"><a href="/">All calculators</a><a href="privacy-policy">Privacy Policy</a><a href="about">About</a><a href="contact">Contact</a></p></footer></div>
+<script src="app.js"></script>
+</body>
+</html>
