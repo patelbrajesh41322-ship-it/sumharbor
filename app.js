@@ -2,6 +2,7 @@
   'use strict';
 
   var usd = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' });
+  var usd0 = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
   function val(f, n) { return parseFloat(f.elements[n].value); }
   function dur(months) {
     var y = Math.floor(months / 12), m = months % 12, s = [];
@@ -316,7 +317,7 @@
         bal = bal * (1 + m) + c;
         deposits += c;
         if (k % 12 === 0 || k === months) {
-          rows.push([k % 12 === 0 ? String(k / 12) : (k / 12).toFixed(1), usd.format(deposits), usd.format(bal - deposits), usd.format(bal)]);
+          rows.push([k % 12 === 0 ? String(k / 12) : (k / 12).toFixed(1), usd0.format(deposits), usd0.format(bal - deposits), usd0.format(bal)]);
         }
       }
       return {
@@ -327,7 +328,7 @@
           ['Total interest earned', usd.format(bal - deposits)],
           ['Effective annual yield', ((Math.pow(1 + r / 100 / n, n) - 1) * 100).toFixed(3) + '%']
         ],
-        table: { title: 'Year by year', cols: ['Year', 'Total put in', 'Interest so far', 'Balance'], rows: rows }
+        table: { title: 'Year by year', cols: ['Year', 'Put in', 'Interest', 'Balance'], rows: rows }
       };
     },
 
