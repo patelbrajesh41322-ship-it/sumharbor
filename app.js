@@ -298,6 +298,63 @@
           ['Tip per person', usd.format(tip / n)]
         ]
       };
+    },
+
+    compound: function (f) {
+      var P = val(f, 'principal'), r = val(f, 'rate'), yrs = val(f, 'years'), n = parseInt(f.elements.freq.value, 10), c = val(f, 'monthly');
+      if (isNaN(P)) { P = 0; }
+      if (isNaN(c)) { c = 0; }
+      if (!(P >= 0)) return { error: 'Enter your starting amount (use 0 if none).' };
+      if (!(c >= 0)) return { error: 'Monthly contribution cannot be negative.' };
+      if (!(P > 0 || c > 0)) return { error: 'Enter a starting amount or a monthly contribution.' };
+      if (!(r >= 0 && r <= 100)) return { error: 'Enter an interest rate between 0% and 100%.' };
+      if (!(yrs > 0 && yrs <= 100)) return { error: 'Enter a number of years between 1 and 100.' };
+      var months = Math.round(yrs * 12);
+      var m = Math.pow(1 + r / 100 / n, n / 12) - 1;
+      var bal = P, deposits = P, rows = [], k;
+      for (k = 1; k <= months; k++) {
+        bal = bal * (1 + m) + c;
+        deposits += c;
+        if (k % 12 === 0 || k === months) {
+          rows.push([k % 12 === 0 ? String(k / 12) : (k / 12).toFixed(1), usd.format(deposits), usd.format(bal - deposits), usd.format(bal)]);
+        }
+      }
+      return {
+        head: ['Future balance', usd.format(bal)],
+        rows: [
+          ['Starting amount', usd.format(P)],
+          ['Total contributions', usd.format(deposits - P)],
+          ['Total interest earned', usd.format(bal - deposits)],
+          ['Effective annual yield', ((Math.pow(1 + r / 100 / n, n) - 1) * 100).toFixed(3) + '%']
+        ],
+        table: { title: 'Year by year', cols: ['Year', 'Total put in', 'Interest so far', 'Balance'], rows: rows }
+      };
+    },
+
+    savingsgoal: function (f) {
+      var G = val(f, 'goal'), S = val(f, 'saved'), c = val(f, 'monthly'), a = val(f, 'apy');
+      if (isNaN(S)) { S = 0; }
+      if (isNaN(c)) { c = 0; }
+      if (isNaN(a)) { a = 0; }
+      if (!(G > 0)) return { error: 'Enter your savings goal.' };
+      if (!(S >= 0)) return { error: 'Current savings cannot be negative.' };
+      if (!(c >= 0)) return { error: 'Monthly deposit cannot be negative.' };
+      if (!(a >= 0 && a <= 100)) return { error: 'Enter an APY between 0% and 100%.' };
+      if (S >= G) return { error: 'You have already reached this goal. Enter a larger goal to plan ahead.' };
+      var m = Math.pow(1 + a / 100, 1 / 12) - 1, bal = S, k = 0;
+      while (bal < G && k < 1200) { bal = bal * (1 + m) + c; k++; }
+      if (bal < G) return { error: 'At these numbers the goal is more than 100 years away. Try a larger monthly deposit.' };
+      var put = c * k;
+      return {
+        head: ['Time to reach your goal', dur(k)],
+        rows: [
+          ['Months', String(k)],
+          ['Starting savings', usd.format(S)],
+          ['Total deposits', usd.format(put)],
+          ['Interest earned', usd.format(bal - S - put)],
+          ['Balance at the end', usd.format(bal)]
+        ]
+      };
     }
 
   };
@@ -420,6 +477,26 @@
     var upd = function () { tgt.textContent = map[sel.value] || ''; };
     sel.addEventListener('change', upd); upd();
   }
+
+
+  /* Share button */
+  var shareBox = el('div', 'share');
+  var shareBtn = el('button', 'sharebtn', 'Share this calculator');
+  shareBtn.type = 'button';
+  var shareMsg = el('span', 'sharemsg');
+  shareMsg.setAttribute('aria-live', 'polite');
+  shareBox.appendChild(shareBtn); shareBox.appendChild(shareMsg);
+  form.parentNode.insertBefore(shareBox, form.nextSibling);
+  shareBtn.addEventListener('click', function () {
+    var data = { title: document.title, text: 'Free calculator: ' + document.querySelector('h1').textContent, url: location.href.split('#')[0] };
+    if (navigator.share) {
+      navigator.share(data).catch(function () {});
+    } else if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(data.url).then(function () { shareMsg.textContent = 'Link copied'; }, function () { shareMsg.textContent = data.url; });
+    } else {
+      shareMsg.textContent = data.url;
+    }
+  });
 
   form.addEventListener('submit', function (e) { e.preventDefault(); run(); });
   run();

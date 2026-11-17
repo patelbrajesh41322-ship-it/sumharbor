@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Savings Goal Calculator: How Long to Reach Your Goal | Ratiofield</title>
+<meta name="description" content="Free savings goal calculator. Enter your goal, current savings, monthly deposit and savings account APY to see how long it will take to get there.">
+<link rel="canonical" href="https://ratiofield.com/savings-goal-calculator">
+<meta name="color-scheme" content="light dark">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Ratiofield">
+<meta property="og:title" content="Savings Goal Calculator: How Long to Reach Your Goal | Ratiofield">
+<meta property="og:description" content="Free savings goal calculator. Enter your goal, current savings, monthly deposit and savings account APY to see how long it will take to get there.">
+<meta property="og:url" content="https://ratiofield.com/savings-goal-calculator">
+<meta property="og:image" content="https://ratiofield.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Ratiofield: free calculators">
+<meta name="twitter:image" content="https://ratiofield.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Savings Goal Calculator", "url": "https://ratiofield.com/savings-goal-calculator", "description": "Free savings goal calculator. Enter your goal, current savings, monthly deposit and savings account APY to see how long it will take to get there.", "applicationCategory": "FinanceApplication", "operatingSystem": "Any", "browserRequirements": "Requires JavaScript", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}</script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site"><div class="wrap"><a class="brand" href="/"><svg width="34" height="34" viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="9" fill="#0f6e78"/><text x="18" y="26" text-anchor="middle" font-size="24" font-weight="700" fill="#ffffff" font-family="system-ui,sans-serif">÷</text></svg> Ratiofield</a></div></header>
+<main class="wrap">
+<h1>Savings Goal Calculator</h1>
+<p class="lead">Saving for a car, a down payment or an emergency fund? Find out how many months it takes with your monthly deposit and savings account interest.</p>
+
+<form class="tool" data-calc="savingsgoal" autocomplete="off">
+  <div class="row">
+    <div class="field"><label for="goal">Savings goal ($)</label>
+    <input id="goal" name="goal" type="number" inputmode="decimal" step="any" min="0" value="20000"></div>
+    <div class="field"><label for="saved">Saved so far ($)</label>
+    <input id="saved" name="saved" type="number" inputmode="decimal" step="any" min="0" value="2000"></div>
+  </div>
+  <div class="row">
+    <div class="field"><label for="monthly">Monthly deposit ($)</label>
+    <input id="monthly" name="monthly" type="number" inputmode="decimal" step="any" min="0" value="400"></div>
+    <div class="field"><label for="apy">Savings account APY (%)</label>
+    <input id="apy" name="apy" type="number" inputmode="decimal" step="any" min="0" value="4"></div>
+  </div>
+  <button class="go" type="submit">Find my timeline</button>
+  <div id="result" aria-live="polite" hidden></div>
+</form>
+
+<h2>How the timeline is worked out</h2>
+<p>The calculator moves forward one month at a time. Each month your balance earns interest at the monthly equivalent of your APY, then your deposit is added. It stops the first month the balance reaches your goal.</p>
+<p class="formula">Monthly rate = (1 + APY)<sup>1/12</sup> − 1<br>New balance = old balance × (1 + monthly rate) + deposit</p>
+<p><strong>Example:</strong> a $20,000 goal, $2,000 already saved, $400 a month and a 4% APY takes 3 years and 6 months (42 months). You deposit $16,800 and interest adds about $1,470.</p>
+
+<h2>Frequently asked questions</h2>
+<details><summary>What is APY?</summary>
+<p>APY is the annual percentage yield: what a savings account pays over a full year including compounding. Rates change, so check your bank for the current one.</p></details>
+<details><summary>What if my account pays no interest?</summary>
+<p>Set the APY to 0. The result is then simply the amount left divided by your monthly deposit, rounded up to whole months.</p></details>
+<details><summary>Does the result count taxes or inflation?</summary>
+<p>No. Interest on savings is usually taxable, and prices may rise while you save, so your goal may need to be a bit higher than today's price.</p></details>
+</main>
+<nav class="wrap more" aria-label="More calculators"><h2>More calculators</h2><ul><li><a href="gpa-calculator">GPA</a></li><li><a href="weighted-gpa-calculator">Weighted GPA</a></li><li><a href="final-grade-calculator">Final Grade</a></li><li><a href="weighted-grade-calculator">Weighted Grade</a></li><li><a href="grade-percentage-calculator">Grade Percentage</a></li><li><a href="discount-calculator">Discount</a></li><li><a href="car-loan-payment-calculator">Car Loan Payment</a></li><li><a href="car-loan-payoff-calculator">Car Loan Payoff</a></li><li><a href="hourly-to-salary-calculator">Hourly to Salary</a></li><li><a href="margin-calculator">Margin and Markup</a></li><li><a href="break-even-calculator">Break-Even</a></li><li><a href="compound-interest-calculator">Compound Interest</a></li></ul></nav>
+<div class="wrap"><footer><p>Results are estimates for information only, not financial, tax or academic advice. Confirm important numbers with your school, lender or a qualified professional.</p><p class="flinks"><a href="/">All calculators</a><a href="privacy-policy">Privacy Policy</a><a href="about">About</a><a href="contact">Contact</a></p></footer></div>
+<script src="app.js"></script>
+</body>
+</html>

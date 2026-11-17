@@ -81,3 +81,8 @@ footer .flinks a{margin-right:14px}
 .more ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
 .more a{display:inline-block;padding:6px 12px;border:1px solid var(--line);border-radius:999px;text-decoration:none;font-size:15px;background:var(--card)}
 .more a:hover{border-color:var(--accent)}
+
+.share{margin:14px 0 0;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.sharebtn{font:inherit;font-size:15px;padding:8px 16px;border:1px solid var(--accent);border-radius:999px;background:transparent;color:var(--accent);cursor:pointer}
+.sharebtn:hover{background:var(--accent);color:var(--accent-ink)}
+.sharemsg{font-size:14px;color:var(--muted);word-break:break-all}

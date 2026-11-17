@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Compound Interest Calculator: See Your Money Grow | Ratiofield</title>
+<meta name="description" content="Free compound interest calculator. Enter a starting amount, interest rate, years and optional monthly deposits to see your future balance and a year-by-year table.">
+<link rel="canonical" href="https://ratiofield.com/compound-interest-calculator">
+<meta name="color-scheme" content="light dark">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Ratiofield">
+<meta property="og:title" content="Compound Interest Calculator: See Your Money Grow | Ratiofield">
+<meta property="og:description" content="Free compound interest calculator. Enter a starting amount, interest rate, years and optional monthly deposits to see your future balance and a year-by-year table.">
+<meta property="og:url" content="https://ratiofield.com/compound-interest-calculator">
+<meta property="og:image" content="https://ratiofield.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Ratiofield: free calculators">
+<meta name="twitter:image" content="https://ratiofield.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Compound Interest Calculator", "url": "https://ratiofield.com/compound-interest-calculator", "description": "Free compound interest calculator. Enter a starting amount, interest rate, years and optional monthly deposits to see your future balance and a year-by-year table.", "applicationCategory": "FinanceApplication", "operatingSystem": "Any", "browserRequirements": "Requires JavaScript", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}</script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site"><div class="wrap"><a class="brand" href="/"><svg width="34" height="34" viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="9" fill="#0f6e78"/><text x="18" y="26" text-anchor="middle" font-size="24" font-weight="700" fill="#ffffff" font-family="system-ui,sans-serif">÷</text></svg> Ratiofield</a></div></header>
+<main class="wrap">
+<h1>Compound Interest Calculator</h1>
+<p class="lead">See how a starting amount and regular deposits grow over time. Pick how often interest compounds and get a year-by-year table.</p>
+
+<form class="tool" data-calc="compound" autocomplete="off">
+  <div class="row">
+    <div class="field"><label for="principal">Starting amount ($)</label>
+    <input id="principal" name="principal" type="number" inputmode="decimal" step="any" min="0" value="10000"></div>
+    <div class="field"><label for="monthly">Monthly contribution ($)</label>
+    <input id="monthly" name="monthly" type="number" inputmode="decimal" step="any" min="0" value="200"></div>
+  </div>
+  <div class="row">
+    <div class="field"><label for="rate">Annual interest rate (%)</label>
+    <input id="rate" name="rate" type="number" inputmode="decimal" step="any" min="0" value="6"></div>
+    <div class="field"><label for="years">Years</label>
+    <input id="years" name="years" type="number" inputmode="decimal" step="any" min="1" value="20"></div>
+  </div>
+  <div class="field"><label for="freq">Compounded</label>
+  <select id="freq" name="freq">
+    <option value="365">Daily</option>
+    <option value="12" selected>Monthly</option>
+    <option value="4">Quarterly</option>
+    <option value="2">Semiannually</option>
+    <option value="1">Annually</option>
+  </select></div>
+  <button class="go" type="submit">Calculate growth</button>
+  <div id="result" aria-live="polite" hidden></div>
+</form>
+
+<h2>How compound interest works</h2>
+<p>With compound interest you earn interest on your interest. Each period, the interest is added to the balance, and the next period's interest is figured on the larger amount. The longer the money stays, the faster it grows.</p>
+<p class="formula">Balance = Principal × (1 + rate ÷ n)<sup>n × years</sup><br>n = times interest compounds per year</p>
+<p><strong>Example:</strong> $10,000 at 6% compounded monthly for 20 years, with nothing added, grows to about $33,102. Add $200 every month and the balance is about $125,510, of which $58,000 is money you put in and about $67,510 is interest.</p>
+<p>Monthly contributions in this calculator are added at the end of each month.</p>
+
+<h2>Frequently asked questions</h2>
+<details><summary>Does compounding more often make a big difference?</summary>
+<p>A little. At 6%, daily compounding gives an effective yield of about 6.18% against 6.00% for annual compounding. The rate and the number of years matter far more.</p></details>
+<details><summary>What is the effective annual yield?</summary>
+<p>It is the interest you actually earn in one year after compounding, shown as a single percentage. It is what banks often advertise as APY.</p></details>
+<details><summary>Does this include taxes or inflation?</summary>
+<p>No. Taxes, fees and inflation reduce what you keep and what the money can buy. Real returns also vary from year to year, so treat the result as an illustration, not a prediction.</p></details>
+</main>
+<nav class="wrap more" aria-label="More calculators"><h2>More calculators</h2><ul><li><a href="gpa-calculator">GPA</a></li><li><a href="weighted-gpa-calculator">Weighted GPA</a></li><li><a href="final-grade-calculator">Final Grade</a></li><li><a href="weighted-grade-calculator">Weighted Grade</a></li><li><a href="grade-percentage-calculator">Grade Percentage</a></li><li><a href="discount-calculator">Discount</a></li><li><a href="car-loan-payment-calculator">Car Loan Payment</a></li><li><a href="car-loan-payoff-calculator">Car Loan Payoff</a></li><li><a href="hourly-to-salary-calculator">Hourly to Salary</a></li><li><a href="margin-calculator">Margin and Markup</a></li><li><a href="break-even-calculator">Break-Even</a></li><li><a href="savings-goal-calculator">Savings Goal</a></li></ul></nav>
+<div class="wrap"><footer><p>Results are estimates for information only, not financial, tax or academic advice. Confirm important numbers with your school, lender or a qualified professional.</p><p class="flinks"><a href="/">All calculators</a><a href="privacy-policy">Privacy Policy</a><a href="about">About</a><a href="contact">Contact</a></p></footer></div>
+<script src="app.js"></script>
+</body>
+</html>
