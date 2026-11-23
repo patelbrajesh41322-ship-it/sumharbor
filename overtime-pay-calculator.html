@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Overtime Pay Calculator: Time and a Half and Double Time | Ratiofield</title>
+<meta name="description" content="Free overtime pay calculator. Enter your hourly rate, regular hours, overtime hours and multiplier to see overtime pay and total pay before taxes.">
+<link rel="canonical" href="https://ratiofield.com/overtime-pay-calculator">
+<meta name="color-scheme" content="light dark">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Ratiofield">
+<meta property="og:title" content="Overtime Pay Calculator: Time and a Half and Double Time | Ratiofield">
+<meta property="og:description" content="Free overtime pay calculator. Enter your hourly rate, regular hours, overtime hours and multiplier to see overtime pay and total pay before taxes.">
+<meta property="og:url" content="https://ratiofield.com/overtime-pay-calculator">
+<meta property="og:image" content="https://ratiofield.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Ratiofield: free calculators">
+<meta name="twitter:image" content="https://ratiofield.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Overtime Pay Calculator", "url": "https://ratiofield.com/overtime-pay-calculator", "description": "Free overtime pay calculator. Enter your hourly rate, regular hours, overtime hours and multiplier to see overtime pay and total pay before taxes.", "applicationCategory": "FinanceApplication", "operatingSystem": "Any", "browserRequirements": "Requires JavaScript", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}</script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site"><div class="wrap"><a class="brand" href="/"><svg width="34" height="34" viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="9" fill="#0f6e78"/><text x="18" y="26" text-anchor="middle" font-size="24" font-weight="700" fill="#ffffff" font-family="system-ui,sans-serif">÷</text></svg> Ratiofield</a></div></header>
+<main class="wrap">
+<h1>Overtime Pay Calculator</h1>
+<p class="lead">Add up your pay for a week with regular and overtime hours. Pick time and a half, double time or another multiplier, and see your total before taxes.</p>
+
+<form class="tool" data-calc="overtime" autocomplete="off">
+  <div class="row">
+    <div class="field"><label for="wage">Regular hourly rate ($)</label>
+    <input id="wage" name="wage" type="number" inputmode="decimal" step="any" min="0" value="20"></div>
+    <div class="field"><label for="mult">Overtime pays</label>
+    <select id="mult" name="mult"><option value="1.5" selected>1.5x (time and a half)</option><option value="2">2x (double time)</option><option value="1.25">1.25x</option><option value="1.75">1.75x</option><option value="2.5">2.5x</option></select></div>
+  </div>
+  <div class="row">
+    <div class="field"><label for="regular">Regular hours</label>
+    <input id="regular" name="regular" type="number" inputmode="decimal" step="any" min="0" value="40"></div>
+    <div class="field"><label for="overtime">Overtime hours</label>
+    <input id="overtime" name="overtime" type="number" inputmode="decimal" step="any" min="0" value="10"></div>
+  </div>
+  <button class="go" type="submit">Calculate pay</button>
+  <div id="result" aria-live="polite" hidden></div>
+</form>
+
+<h2>How overtime pay is figured</h2>
+<p>Overtime pay is your regular hourly rate multiplied by the overtime multiplier, times the overtime hours. That amount is added to your regular pay.</p>
+<p class="formula">Overtime rate = Hourly rate × Multiplier<br>Total pay = Hourly rate × Regular hours + Overtime rate × Overtime hours</p>
+<p><strong>Example:</strong> At $20 an hour with 40 regular hours and 10 overtime hours at 1.5x, your overtime rate is $30 an hour. Regular pay is $800, overtime pay is $300, and the total is $1,100 before taxes.</p>
+
+<h2>Overtime pay at common rates</h2>
+<p>Overtime earnings at time and a half (1.5x):</p>
+<div class="tablescroll data-wrap"><table class="data"><thead><tr><th>Hourly rate</th><th>5 hrs</th><th>10 hrs</th><th>15 hrs</th></tr></thead><tbody><tr><td>$15</td><td>$112.50</td><td>$225.00</td><td>$337.50</td></tr><tr><td>$20</td><td>$150.00</td><td>$300.00</td><td>$450.00</td></tr><tr><td>$25</td><td>$187.50</td><td>$375.00</td><td>$562.50</td></tr><tr><td>$30</td><td>$225.00</td><td>$450.00</td><td>$675.00</td></tr><tr><td>$40</td><td>$300.00</td><td>$600.00</td><td>$900.00</td></tr></tbody></table></div>
+<h2>Overtime rate per hour</h2>
+<p>What one overtime hour pays at each multiplier:</p>
+<div class="tablescroll data-wrap"><table class="data"><thead><tr><th>Hourly rate</th><th>Time and a half</th><th>Double time</th></tr></thead><tbody><tr><td>$15</td><td>$22.50</td><td>$30.00</td></tr><tr><td>$20</td><td>$30.00</td><td>$40.00</td></tr><tr><td>$25</td><td>$37.50</td><td>$50.00</td></tr><tr><td>$30</td><td>$45.00</td><td>$60.00</td></tr><tr><td>$40</td><td>$60.00</td><td>$80.00</td></tr></tbody></table></div>
+<h2>When does overtime start?</h2>
+<p>Under the federal Fair Labor Standards Act, most hourly workers in the United States must be paid at least 1.5 times their regular rate for hours over 40 in a workweek. Some states and some employers also pay overtime after 8 hours in a day, on weekends or on holidays, and some pay double time. Contracts and union agreements can offer more than the legal minimum. This page is for planning and is not legal advice, so check your state labor department or your employer for the rules that apply to you.</p>
+
+<h2>Frequently asked questions</h2>
+<details><summary>Do salaried workers get overtime?</summary>
+<p>Not always. Many salaried employees are exempt, but that depends on their duties and on a minimum salary level. Being paid a salary does not by itself make someone exempt.</p></details>
+<details><summary>Is overtime taxed more?</summary>
+<p>Overtime is taxed at the same rates as other income. It can look like a bigger cut because a larger paycheck may push withholding up for that period, but the extra tax is counted against your yearly total.</p></details>
+<details><summary>How do I work out overtime for two weeks?</summary>
+<p>Overtime is usually counted one workweek at a time, not averaged over two weeks. Run the calculator once for each week and add the results.</p></details>
+<details><summary>How much does a yearly salary equal per hour?</summary>
+<p>Divide the yearly salary by 2,080 (40 hours × 52 weeks) to get the hourly rate, then use it here. The <a href="hourly-to-salary-calculator">Hourly to Salary Calculator</a> does that conversion for you.</p></details>
+<h2>Related calculators</h2>
+<p><a href="hourly-to-salary-calculator">Hourly to Salary Calculator</a> · <a href="tip-calculator">Tip Calculator</a> · <a href="savings-goal-calculator">Savings Goal Calculator</a> · <a href="break-even-calculator">Break-Even Calculator</a></p>
+
+</main>
+<nav class="wrap more" aria-label="More calculators"><h2>More calculators</h2><ul><li><a href="gpa-calculator">GPA</a></li><li><a href="weighted-gpa-calculator">Weighted GPA</a></li><li><a href="final-grade-calculator">Final Grade</a></li><li><a href="weighted-grade-calculator">Weighted Grade</a></li><li><a href="grade-percentage-calculator">Grade Percentage</a></li><li><a href="discount-calculator">Discount</a></li><li><a href="tip-calculator">Tip</a></li><li><a href="car-loan-payment-calculator">Car Loan Payment</a></li><li><a href="car-loan-payoff-calculator">Car Loan Payoff</a></li><li><a href="hourly-to-salary-calculator">Hourly to Salary</a></li><li><a href="margin-calculator">Margin and Markup</a></li><li><a href="break-even-calculator">Break-Even</a></li><li><a href="compound-interest-calculator">Compound Interest</a></li><li><a href="simple-interest-calculator">Simple Interest</a></li><li><a href="savings-goal-calculator">Savings Goal</a></li></ul></nav>
+<div class="wrap"><footer><p>Results are estimates before taxes and deductions, for information only. They are not financial, tax or legal advice.</p><p class="flinks"><a href="/">All calculators</a><a href="privacy-policy">Privacy Policy</a><a href="about">About</a><a href="contact">Contact</a></p></footer></div>
+<script src="app.js"></script>
+</body>
+</html>

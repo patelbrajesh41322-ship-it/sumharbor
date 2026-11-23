@@ -356,6 +356,59 @@
           ['Balance at the end', usd.format(bal)]
         ]
       };
+    },
+
+    simpleinterest: function (f) {
+      var P = val(f, 'principal'), r = val(f, 'rate'), t = val(f, 'time');
+      var per = f.elements.per.value, unit = f.elements.unit.value, sym = f.elements.sym.value;
+      var nf = new Intl.NumberFormat(sym === '\u20b9' ? 'en-IN' : 'en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      var nf0 = new Intl.NumberFormat(sym === '\u20b9' ? 'en-IN' : 'en-US', { maximumFractionDigits: 0 });
+      function money(x) { return sym + nf.format(x); }
+      function money0(x) { return sym + nf0.format(x); }
+      if (!(P > 0)) return { error: 'Enter the amount lent or borrowed.' };
+      if (!(r >= 0 && r <= 1000)) return { error: 'Enter an interest rate between 0% and 1000%.' };
+      if (!(t > 0)) return { error: 'Enter the time period.' };
+      var months = unit === 'years' ? t * 12 : t;
+      if (months > 1200) return { error: 'Enter a time period of 100 years or less.' };
+      var monthly = per === 'month' ? P * r / 100 : P * r / 100 / 12;
+      var yearly = monthly * 12, total = monthly * months;
+      var annualRate = per === 'month' ? r * 12 : r;
+      var rows = [1, 3, 6, 12, 24, 36].map(function (m) {
+        return [m + (m === 1 ? ' month' : ' months'), money0(monthly * m), money0(P + monthly * m)];
+      });
+      return {
+        head: ['Total interest', money(total)],
+        rows: [
+          ['Interest for 1 month', money(monthly)],
+          ['Interest for 1 year', money(yearly)],
+          ['Total to pay back', money(P + total)],
+          ['Rate per year', fmt(annualRate) + '%'],
+          ['Time', dur(Math.round(months))]
+        ],
+        table: { title: 'Same loan over other periods', cols: ['Period', 'Interest', 'Total'], rows: rows }
+      };
+    },
+
+    overtime: function (f) {
+      var w = val(f, 'wage'), reg = val(f, 'regular'), ot = val(f, 'overtime'), mult = parseFloat(f.elements.mult.value);
+      if (isNaN(reg)) { reg = 0; }
+      if (isNaN(ot)) { ot = 0; }
+      if (!(w > 0)) return { error: 'Enter your regular hourly pay rate.' };
+      if (!(reg >= 0 && reg <= 168)) return { error: 'Regular hours must be between 0 and 168.' };
+      if (!(ot >= 0 && ot <= 168)) return { error: 'Overtime hours must be between 0 and 168.' };
+      if (!(reg > 0 || ot > 0)) return { error: 'Enter regular hours, overtime hours, or both.' };
+      if (reg + ot > 168) return { error: 'There are only 168 hours in a week. Check your hours.' };
+      var otRate = w * mult, regPay = w * reg, otPay = otRate * ot, total = regPay + otPay;
+      return {
+        head: ['Total pay before taxes', usd.format(total)],
+        rows: [
+          ['Regular pay (' + fmt(reg) + ' hrs)', usd.format(regPay)],
+          ['Overtime rate per hour', usd.format(otRate)],
+          ['Overtime pay (' + fmt(ot) + ' hrs)', usd.format(otPay)],
+          ['Overtime share of total', (otPay / total * 100).toFixed(1) + '%'],
+          ['Average pay per hour', usd.format(total / (reg + ot))]
+        ]
+      };
     }
 
   };

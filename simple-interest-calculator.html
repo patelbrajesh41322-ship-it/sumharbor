@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Simple Interest Calculator: Monthly or Yearly Rate | Ratiofield</title>
+<meta name="description" content="Free simple interest calculator. Enter the amount, rate per month or per year and the time to see interest for a month, a year and the full period.">
+<link rel="canonical" href="https://ratiofield.com/simple-interest-calculator">
+<meta name="color-scheme" content="light dark">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Ratiofield">
+<meta property="og:title" content="Simple Interest Calculator: Monthly or Yearly Rate | Ratiofield">
+<meta property="og:description" content="Free simple interest calculator. Enter the amount, rate per month or per year and the time to see interest for a month, a year and the full period.">
+<meta property="og:url" content="https://ratiofield.com/simple-interest-calculator">
+<meta property="og:image" content="https://ratiofield.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Ratiofield: free calculators">
+<meta name="twitter:image" content="https://ratiofield.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Simple Interest Calculator", "url": "https://ratiofield.com/simple-interest-calculator", "description": "Free simple interest calculator. Enter the amount, rate per month or per year and the time to see interest for a month, a year and the full period.", "applicationCategory": "FinanceApplication", "operatingSystem": "Any", "browserRequirements": "Requires JavaScript", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}</script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site"><div class="wrap"><a class="brand" href="/"><svg width="34" height="34" viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="9" fill="#0f6e78"/><text x="18" y="26" text-anchor="middle" font-size="24" font-weight="700" fill="#ffffff" font-family="system-ui,sans-serif">÷</text></svg> Ratiofield</a></div></header>
+<main class="wrap">
+<h1>Simple Interest Calculator</h1>
+<p class="lead">Find the interest on a loan or deposit when the rate is charged on the original amount only. Enter the rate per month or per year, pick the currency, and see the interest for one month, one year and the full period.</p>
+
+<form class="tool" data-calc="simpleinterest" autocomplete="off">
+  <div class="row">
+    <div class="field"><label for="principal">Amount (principal)</label>
+    <input id="principal" name="principal" type="number" inputmode="decimal" step="any" min="0" value="10000"></div>
+    <div class="field"><label for="sym">Currency</label>
+    <select id="sym" name="sym"><option value="$">$ Dollar</option><option value="₹">₹ Rupee</option><option value="£">£ Pound</option><option value="€">€ Euro</option></select></div>
+  </div>
+  <div class="row">
+    <div class="field"><label for="rate">Interest rate (%)</label>
+    <input id="rate" name="rate" type="number" inputmode="decimal" step="any" min="0" value="5"></div>
+    <div class="field"><label for="per">Rate is charged</label>
+    <select id="per" name="per"><option value="month" selected>Per month</option><option value="year">Per year</option></select></div>
+  </div>
+  <div class="row">
+    <div class="field"><label for="time">Time</label>
+    <input id="time" name="time" type="number" inputmode="decimal" step="any" min="0" value="12"></div>
+    <div class="field"><label for="unit">Time is in</label>
+    <select id="unit" name="unit"><option value="months" selected>Months</option><option value="years">Years</option></select></div>
+  </div>
+  <button class="go" type="submit">Calculate interest</button>
+  <div id="result" aria-live="polite" hidden></div>
+</form>
+
+<h2>How simple interest works</h2>
+<p>With simple interest, the interest is figured on the original amount only. Interest is never added back to the balance, so you pay or earn the same amount every month or every year.</p>
+<p class="formula">Interest = Principal × Rate ÷ 100 × Time<br>Total to pay back = Principal + Interest</p>
+<p><strong>Example:</strong> You lend 10,000 at 5% per month. One month of interest is 10,000 × 5 ÷ 100 = 500. Over 12 months that is 6,000, so the borrower pays back 16,000 in total. At 10% per month the same loan earns 1,000 a month and 12,000 over a year.</p>
+<p>The calculator works the same in any currency. The symbol only changes how the answer is shown.</p>
+
+<h2>Monthly rates compared</h2>
+<p>Interest on 10,000 at different monthly rates:</p>
+<div class="tablescroll data-wrap"><table class="data"><thead><tr><th>Monthly rate</th><th>Per month</th><th>Per year</th></tr></thead><tbody><tr><td>1%</td><td>$100</td><td>$1,200</td></tr><tr><td>2%</td><td>$200</td><td>$2,400</td></tr><tr><td>3%</td><td>$300</td><td>$3,600</td></tr><tr><td>5%</td><td>$500</td><td>$6,000</td></tr><tr><td>10%</td><td>$1,000</td><td>$12,000</td></tr></tbody></table></div>
+<p>Notice how a rate that sounds small each month adds up. 5% a month is 60% a year, and 10% a month is 120% a year.</p>
+
+<h2>Yearly rates over three years</h2>
+<p>The same 10,000 at common yearly rates:</p>
+<div class="tablescroll data-wrap"><table class="data"><thead><tr><th>Yearly rate</th><th>1 year</th><th>3 years</th><th>Total after 3 yrs</th></tr></thead><tbody><tr><td>4%</td><td>$400</td><td>$1,200</td><td>$11,200</td></tr><tr><td>6%</td><td>$600</td><td>$1,800</td><td>$11,800</td></tr><tr><td>8%</td><td>$800</td><td>$2,400</td><td>$12,400</td></tr><tr><td>10%</td><td>$1,000</td><td>$3,000</td><td>$13,000</td></tr><tr><td>12%</td><td>$1,200</td><td>$3,600</td><td>$13,600</td></tr></tbody></table></div>
+
+<h2>Simple interest or compound interest?</h2>
+<p>Simple interest stays flat because it ignores earlier interest. Compound interest adds interest to the balance, so each period earns on a bigger amount. Many personal loans between friends and some short-term notes use simple interest, while savings accounts and most credit cards use compound interest. To see the difference on your own numbers, try the <a href="compound-interest-calculator">Compound Interest Calculator</a>.</p>
+
+<h2>Frequently asked questions</h2>
+<details><summary>What is the difference between a monthly rate and a yearly rate?</summary>
+<p>A monthly rate is charged every month, so multiply it by 12 to get the yearly rate. 2% per month equals 24% per year in simple interest.</p></details>
+<details><summary>How do I find the rate if I know the interest?</summary>
+<p>Divide the interest by the principal and by the time, then multiply by 100. If 10,000 earned 1,500 in 3 months, the rate is 1,500 ÷ 10,000 ÷ 3 × 100 = 5% per month.</p></details>
+<details><summary>Does this calculator work with days?</summary>
+<p>It works in months and years. For a number of days, divide by 30 to get months. For example, 45 days is 1.5 months.</p></details>
+<details><summary>Is there a legal limit on the interest rate?</summary>
+<p>Many places set maximum rates for loans, and lending money as a business can require a license. The rules differ by country and by state, so check your local laws before you agree on a rate.</p></details>
+
+</main>
+<nav class="wrap more" aria-label="More calculators"><h2>More calculators</h2><ul><li><a href="gpa-calculator">GPA</a></li><li><a href="weighted-gpa-calculator">Weighted GPA</a></li><li><a href="final-grade-calculator">Final Grade</a></li><li><a href="weighted-grade-calculator">Weighted Grade</a></li><li><a href="grade-percentage-calculator">Grade Percentage</a></li><li><a href="discount-calculator">Discount</a></li><li><a href="tip-calculator">Tip</a></li><li><a href="car-loan-payment-calculator">Car Loan Payment</a></li><li><a href="car-loan-payoff-calculator">Car Loan Payoff</a></li><li><a href="hourly-to-salary-calculator">Hourly to Salary</a></li><li><a href="overtime-pay-calculator">Overtime Pay</a></li><li><a href="margin-calculator">Margin and Markup</a></li><li><a href="break-even-calculator">Break-Even</a></li><li><a href="compound-interest-calculator">Compound Interest</a></li><li><a href="savings-goal-calculator">Savings Goal</a></li></ul></nav>
+<div class="wrap"><footer><p>Results are estimates for information only, not financial or legal advice. Check the lending rules where you live before you agree on a rate.</p><p class="flinks"><a href="/">All calculators</a><a href="privacy-policy">Privacy Policy</a><a href="about">About</a><a href="contact">Contact</a></p></footer></div>
+<script src="app.js"></script>
+</body>
+</html>
