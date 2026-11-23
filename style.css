@@ -90,3 +90,7 @@ footer .flinks a{margin-right:14px}
   table{font-size:13px;min-width:0}
   th,td{padding:6px 4px}
 }
+.data-wrap{margin:10px 0 14px}
+table.data{min-width:0}
+table.data th,table.data td{white-space:nowrap}
+@media (min-width:481px){table.data{min-width:380px}}
